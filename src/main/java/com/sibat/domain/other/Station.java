@@ -8,6 +8,9 @@ import javax.persistence.Table;
 /**
  * 地铁站点信息表
  * Created by tgw61 on 2017/5/3.
+ * insert into station(station_id,station_name,lat,lon,zdbh,xlbh,xlmc) select id,name,display_y,display_x,zdbh,xlbh,xlmc from station_copy;
+ * update station set station_id =id;
+ *
  */
 @Entity
 @Table(name = "station")
@@ -19,7 +22,10 @@ public class Station {
     private String stationName;
     private String lat;
     private String lon;
-
+    private String zdbh;
+    private String xlbh;
+    private String xlmc;//几号线
+    private String address;
     public Station() {
     }
 
@@ -28,6 +34,38 @@ public class Station {
         this.stationName = stationName;
         this.lat = lat;
         this.lon = lon;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getZdbh() {
+        return zdbh;
+    }
+
+    public void setZdbh(String zdbh) {
+        this.zdbh = zdbh;
+    }
+
+    public String getXlbh() {
+        return xlbh;
+    }
+
+    public void setXlbh(String xlbh) {
+        this.xlbh = xlbh;
+    }
+
+    public String getXlmc() {
+        return xlmc;
+    }
+
+    public void setXlmc(String xlmc) {
+        this.xlmc = xlmc;
     }
 
     public int getId() {

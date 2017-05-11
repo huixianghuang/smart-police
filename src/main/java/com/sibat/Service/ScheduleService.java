@@ -1,9 +1,7 @@
 package com.sibat.Service;
 
-import com.sibat.domain.origin.SubwayWarning;
 import com.sibat.domain.origin.SubwayWarningDao;
 import com.sibat.domain.other.StationDao;
-import com.sibat.domain.other.SubwayEvent;
 import com.sibat.domain.other.SubwayEventDao;
 import com.sibat.util.DateUtil;
 import org.apache.log4j.Logger;
@@ -11,9 +9,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by tgw61 on 2017/5/4.
@@ -35,6 +30,21 @@ public class ScheduleService {
     SubwayEventDao subwayEventDao;
     @Autowired
     SubwayWarningDao subwayWarningDao;
+
+    @Scheduled(cron = "0 35 02 ? * *")
+    public void saveEventCategoryCount(){
+
+    }
+
+    @Scheduled(cron = "0 40 02 ? * *")
+    public void saveEventCount(){
+
+    }
+
+    @Scheduled(cron = "0 45 02 ? * *")
+    public void saveLocalPoliceEvent(){
+
+    }
 
     // @Scheduled(cron = "0 26 02 ? * *")
 //    public void saveSubwayEvent() {

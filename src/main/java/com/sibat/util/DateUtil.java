@@ -3,6 +3,7 @@ package com.sibat.util;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -11,6 +12,7 @@ import java.util.*;
 public class DateUtil {
     Logger logger = Logger.getLogger(DateUtil.class);
 
+    static DecimalFormat df = new DecimalFormat("##.##");
     private static String PATTERN_yyyy_MM_dd = "yyyy-MM-dd";
     private static String PATTERN_yyyy_MM = "yyyy-MM";
     private static String PATTERN_yy_MM_dd_HHmmss = "yy-MM-dd HH:mm:ss";
@@ -29,6 +31,46 @@ public class DateUtil {
     private static String PATTERN_yyyy_MM_dd2 = "yyyy/MM/dd";
     private static String PATTERN_yyyyMM = "yyyy/MM";
 
+    @Test
+    public void test() {
+//        List<String> reustl = getSerialDays("2017/02/01", "2017/02/10");
+//        logger.info(reustl);
+        logger.info(timeInterval("2016/08/06 12:34:00.000", "2016/08/07 07:50:03.000"));
+        logger.info("success");
+    }
+
+    public static String timeInterval(String start, String end) {
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yy_MM_dd_HHmmss2);
+        Calendar calendar1 = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+        try {
+            calendar1.setTime(sdf.parse(start));
+            calendar2.setTime(sdf.parse(end));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long result = calendar2.getTime().getTime() - calendar1.getTime().getTime();
+        return df.format(result / 1000 / 60 / 60.0);
+    }
+
+    public static List<String> getSerialDays(String start, String end) {
+        List<String> result = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyy_MM_dd2);
+        Calendar calendar1 = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+        try {
+            calendar1.setTime(sdf.parse(start));
+            calendar2.setTime(sdf.parse(end));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int dayNum = calendar2.get(Calendar.DAY_OF_YEAR) - calendar1.get(Calendar.DAY_OF_YEAR);
+        for (int i = 0; i <= dayNum; i++) {
+            result.add(sdf.format(calendar1.getTime()));
+            calendar1.add(Calendar.DATE, 1);
+        }
+        return result;
+    }
 
     public static String getCurrentTimeString() {
         return parseDateToString(Calendar.getInstance().getTime(),
@@ -102,6 +144,7 @@ public class DateUtil {
         Calendar calendar = Calendar.getInstance();
         return sdf.format(calendar.getTime());
     }
+
     public static String getLastMonth(String time) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyyMM);
         Calendar calendar = Calendar.getInstance();
@@ -109,6 +152,7 @@ public class DateUtil {
         calendar.add(Calendar.MONTH, -1);
         return sdf.format(calendar.getTime());
     }
+
 
     public static String getLastYear(String time) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyyMM);

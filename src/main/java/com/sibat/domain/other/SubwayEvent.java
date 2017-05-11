@@ -8,6 +8,8 @@ import javax.persistence.Table;
 /**
  * 数据表
  * Created by tgw61 on 2017/5/3.
+ *
+ *  select * from subway_event where date(event_time)='2012/12/29'; 提取只有日期的时间
  */
 @Entity
 @Table(name = "subway_event")
@@ -25,10 +27,8 @@ public class SubwayEvent {
     private String content;//时间内容
     private String eventTime;//事件发生时间
     private String police;//所属派出所
-    private String policeId;
+    private String policeId;//所属派出所id
     private String time;//yyyy-MM
-
-
 
     public SubwayEvent() {
     }

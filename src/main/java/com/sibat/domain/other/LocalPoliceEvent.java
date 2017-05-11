@@ -10,6 +10,9 @@ import java.util.Date;
  * 派出所警情按月统计表
  * Created by tgw61 on 2017/5/3.
  * insert into local_police_event(time,police,police_id,count)select time,police,police_id,count(*) from subway_event group by time,police,police_id order by time desc;
+ *
+ * insert into local_police_event(time,police_id,count)select time,police_id,count(*) from subway_event group by time,police_id order by time desc;
+ *  update local_police_event set police =(select police from subway_event where local_police_event.police_id=subway_event.police_id limit 1);
  */
 @Entity
 @Table(name = "LocalPoliceEvent")

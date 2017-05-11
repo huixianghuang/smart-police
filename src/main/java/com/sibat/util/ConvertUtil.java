@@ -10,7 +10,7 @@ import java.util.List;
 public class ConvertUtil {
 
     public static <T> List<T> castEntity(List<Object[]> list, Class<T> clazz) throws Exception {
-        List<T> returnList = new ArrayList<T>();
+        List<T> returnList = new ArrayList();
         Object[] co = list.get(0);
         Class[] c2 = new Class[co.length];
         //确定构造方法

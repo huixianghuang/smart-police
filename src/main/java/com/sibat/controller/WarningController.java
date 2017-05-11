@@ -2,15 +2,13 @@ package com.sibat.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sibat.Service.BatchService;
+import com.sibat.Service.UtilService;
 import com.sibat.domain.origin.BusWarningDao;
 import com.sibat.domain.origin.SubwayWarningDao;
 import com.sibat.domain.origin.BusWarning;
 import com.sibat.domain.origin.SubwayWarning;
 import com.sibat.domain.other.*;
-import com.sibat.domain.pojo.Event;
-import com.sibat.domain.pojo.StationCount;
-import com.sibat.domain.pojo.WarningCondition;
+import com.sibat.domain.pojo.*;
 import com.sibat.util.ConvertUtil;
 import com.sibat.util.DateUtil;
 import com.sibat.util.Response;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,75 +34,12 @@ public class WarningController {
     @Autowired
     BusWarningDao busWarningDao;
     @Autowired
-    BatchService batchService;
-
-    /**
-     * 将数据保存到新库
-     *
-     * @return
-     */
-    @RequestMapping(value = "saveData", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response saveData() {
-        List<SubwayEvent> seList = new ArrayList<>();
-        List<SubwayWarning> swList = subwayWarningDao.findAll();
-        for (SubwayWarning sw : swList) {
-            String stationId = null, stationName = null, lineId = null, lineName = null, eventId = null,
-                    category = null, type = null, content = null, eventTime = null, police = null, policeId = null, time = null;
-//            if(sw.getDDMC()!=null){
-//                stationId=sw.getDDMC();
-//            }
-            if (sw.getDDMC() != null) {
-                stationName = sw.getDDMC().trim();
-            }
-            if (sw.getXL_ID() != null) {
-                lineId = sw.getXL_ID().trim();
-            }
-            if (sw.getXL() != null) {
-                lineName = sw.getXL().trim();
-            }
-            if (sw.getJCJ_ID() != null) {
-                eventId = sw.getJCJ_ID().trim();
-            }
-            if (sw.getJQXZ() != null) {
-                category = sw.getJQXZ().trim();
-            }
-            if (sw.getJQLB() != null) {
-                type = sw.getJQLB().trim();
-            }
-            if (sw.getREMARK() != null) {
-                content = sw.getREMARK().trim();
-            }
-            if (sw.getAF_TIME() != null) {
-                eventTime = sw.getAF_TIME().trim();
-            }
-
-            if (sw.getJJDW_NAME() != null) {
-                police = sw.getJJDW_NAME().trim();
-            }
-            if (sw.getJJDW_ID() != null) {
-                policeId = sw.getJJDW_ID().trim();
-            }
-
-            if (sw.getAF_TIME() != null) {
-                try {
-                    time = sw.getAF_TIME().split(" ")[0];
-                    time = time.split("/")[0] + "/" + time.split("/")[1];
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    logger.info(time);
-                }
-            }
-            seList.add(new SubwayEvent(stationId, stationName, lineId, lineName, eventId, category, type, content, eventTime, police, policeId, time));
-        }
-        batchService.batchInsert(seList);
-        return new Response("200", "success");
-    }
-
-    @Autowired
     SubwayEventDao subwayEventDao;
-
-
     @Autowired
     StationDao stationDao;
+    @Autowired
+    UtilService utilService;
+
 
     /**
      * 查询线网所有站点某一天的警情数量
@@ -114,35 +48,36 @@ public class WarningController {
      */
     @RequestMapping(value = "count", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response count(@RequestParam("date") String date) {
-        List<Object[]> list;
         JSONArray result = new JSONArray();
         try {
-            if (date != null) {
-                list = subwayEventDao.selectByEventTime(date + "%");
-            } else {
-                String currentTime = DateUtil.getCurrentTimePATTERN_yyyy_MM_dd2();
-                String lastDay = DateUtil.getLastDayPattern2(currentTime);
-                list = subwayEventDao.selectByEventTime(lastDay + "%");
+            if (date == "") {
+                String currentTime = DateUtil.getCurrentMonth();
+                date = DateUtil.getLastMonth(currentTime);
             }
-            List<StationCount> scList;
-            scList = ConvertUtil.castEntity(list, StationCount.class);
+            List<Object[]> list = subwayEventDao.selectByEventTime(date + "%");
+            List<StationCount> scList = new ArrayList<>();
+            if (list != null && !list.isEmpty())
+                scList = ConvertUtil.castEntity(list, StationCount.class);
             JSONObject obj;
+            int sum = 0;
             if (scList != null && !scList.isEmpty())
                 for (StationCount sc : scList) {
                     obj = new JSONObject();
-                    Station station = stationDao.findByStationName(sc.getStationName());
+                    Station station = stationDao.findByStationName(utilService.convertStation(sc.getStationName()));
                     if (station != null) {
                         obj.put("stationId", station.getStationId());
                         obj.put("stationName", station.getStationName());
                         obj.put("lat", station.getLat());
                         obj.put("lon", station.getLon());
                         obj.put("eventCount", sc.getCount());
+                        sum += sc.getCount();
                         result.add(obj);
                     }
                 }
+            logger.info("sum=" + sum);
         } catch (Exception e) {
-            logger.error(e.getCause());
-            return new Response("500", "some errors happend");
+            logger.error("api_count", e.getCause());
+            return new Response("500", "some errors happened");
         }
         return new Response("200", result);
     }
@@ -155,21 +90,20 @@ public class WarningController {
      * @return
      */
     @RequestMapping(value = "station/list", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response list(@RequestParam("date") String date
+    public Response stationList(@RequestParam("date") String date
             , @RequestParam("station_id") String station_id) {
         JSONObject result = new JSONObject();
-        List<Object[]> objects;
         try {
-            if (date != null) {
-                objects = subwayEventDao.findByStationIdAndTime(station_id, date + "%");
-            } else {
-                String currentTime = DateUtil.getCurrentTimePATTERN_yyyy_MM_dd2();
-                String lastDay = DateUtil.getLastDayPattern2(currentTime);
-                objects = subwayEventDao.findByStationIdAndTime(station_id, lastDay + "%");
+            if (date == "") {
+                String currentTime = DateUtil.getCurrentMonth();
+                date = DateUtil.getLastMonth(currentTime);
             }
-            List<Event> events = ConvertUtil.castEntity(objects, Event.class);
+            List<Object[]> objects = subwayEventDao.findByStationIdAndTime(station_id, date + "%");
+            List<Event> events = new ArrayList<>();
+            if (objects != null && !objects.isEmpty())
+                events = ConvertUtil.castEntity(objects, Event.class);
             Station station = stationDao.findByStationId(station_id);
-            if (events != null && !events.isEmpty()) {
+            if (station != null && events != null && !events.isEmpty()) {
                 result.put("stationId", station.getStationId());
                 result.put("stationName", station.getStationName());
                 result.put("lat", station.getLat());
@@ -177,14 +111,15 @@ public class WarningController {
                 result.put("eventCount", events.size());
                 result.put("eventList", events);
             }
-            if (result.isEmpty())
-                return new Response("404", "not found");
-            else
-                return new Response("200", result);
         } catch (Exception e) {
-            logger.error(e.getCause());
-            return new Response("500", "some errors happend");
+            logger.error("api_station/list", e.getCause());
+            return new Response("500", "some errors happened");
         }
+        if (result.isEmpty())
+            return new Response("404", "not found");
+        else
+            return new Response("200", result);
+
     }
 
     @Autowired
@@ -202,23 +137,35 @@ public class WarningController {
                 date = DateUtil.getCurrentMonth();
             String lastMonth = DateUtil.getLastMonth(date);
             String lastYear = DateUtil.getLastYear(date);
+
             Integer currentMonthCount = eventCountDao.findByTime(date);
             Integer lastMonthCount = eventCountDao.findByTime(lastMonth);
             Integer lastYearCount = eventCountDao.findByTime(lastYear);
-            List<EventCategoryCount> eventCategoryCountList = eventCategoryCountDao.findByTime(date);
-            List<LocalPoliceEvent> localPoliceEventList = localPoliceEventDao.findByTime(date);
+
+            List<Object[]> CategoryCounts = eventCategoryCountDao.findByTime(date);
+            List<CategoryCount> eventCategoryCountList = new ArrayList<>();
+            if (!CategoryCounts.isEmpty())
+                eventCategoryCountList = ConvertUtil.castEntity(CategoryCounts, CategoryCount.class);
+
+            List<Object[]> localPoliceEvents = localPoliceEventDao.findByTime(date);
+            List<LocalPoliceEventCount> localPoliceEventList = new ArrayList<>();
+            if (!localPoliceEvents.isEmpty())
+                localPoliceEventList = ConvertUtil.castEntity(localPoliceEvents, LocalPoliceEventCount.class);
+
             result.put("currentMonth", currentMonthCount);
             result.put("lastMonth", lastMonthCount);
             result.put("lastYear", lastYearCount);
             result.put("category", eventCategoryCountList);
             result.put("department", localPoliceEventList);
+
             if (result.isEmpty())
                 return new Response("404", "not found");
             else
-                return new Response("200", result);
+                throw new Exception();
+            //return new Response("200", result);
         } catch (Exception e) {
-           e.printStackTrace();
-            return new Response("500", "some errors happend");
+            logger.error("statistic/month", e.getCause());
+            return new Response("500", "some errors happened");
         }
     }
 

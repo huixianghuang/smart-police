@@ -16,17 +16,17 @@ import java.util.List;
 public class BatchService {
     Logger logger = LoggerFactory.getLogger(BatchService.class);
     @PersistenceContext
-    protected EntityManager entityManager;
+    EntityManager entityManager;
 
     @Transactional
     public void batchInsert(List list) {
         for (int i = 0, size = list.size(); i < size; i++) {
             entityManager.persist(list.get(i));
-            if(size>5000&&i%5000==0){
+            if (size > 5000 && i % 5000 == 0) {
                 entityManager.flush();
                 entityManager.clear();
                 logger.info("完成一部分");
-            }else{
+            } else {
                 entityManager.flush();
                 entityManager.clear();
             }

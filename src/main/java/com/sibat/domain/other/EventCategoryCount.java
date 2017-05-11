@@ -24,13 +24,19 @@ public class EventCategoryCount {
     private Date updateTime;
     private String type;//地铁,公交,公交线路
 
-    public EventCategoryCount(int id, String name, String count, String time, Date createTime, Date updateTime, String type) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
-        this.name = name;
-        this.count = count;
-        this.time = time;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
         this.type = type;
     }
 

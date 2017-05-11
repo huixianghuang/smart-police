@@ -9,6 +9,6 @@ import java.util.List;
  * Created by tgw61 on 2017/5/4.
  */
 public interface LocalPoliceEventDao extends JpaRepository<LocalPoliceEvent, Integer> {
-    @Query("select obj from LocalPoliceEvent obj where obj.time=?1")
-    List<LocalPoliceEvent> findByTime(String date);
+    @Query("select obj.policeId,obj.police,obj.count from LocalPoliceEvent obj where obj.time=?1")
+    List<Object[]> findByTime(String date);
 }
