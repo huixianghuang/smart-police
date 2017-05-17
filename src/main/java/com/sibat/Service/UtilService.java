@@ -12,6 +12,8 @@ public class UtilService {
             return stationName.substring(0, stationName.indexOf("站"));
         else if (stationName.contains("("))
             return stationName.substring(0, stationName.indexOf("("));
+        else if (stationName.contains("（"))
+            return stationName.substring(0, stationName.indexOf("（"));
         else
             return stationName;
     }

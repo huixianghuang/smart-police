@@ -129,6 +129,8 @@ public class WarningController {
     LocalPoliceEventDao localPoliceEventDao;
 
     /**
+     * 当月警情
+     * 按类型 派出所 总数 进行警情显示
      * @param date
      * @return
      */
@@ -136,7 +138,7 @@ public class WarningController {
     public Response statistic_month(@RequestParam("date") String date) {
         JSONObject result = new JSONObject();
         try {
-            if (date == null)
+            if (date == "")
                 date = DateUtil.getCurrentMonth();
             String lastMonth = DateUtil.getLastMonth(date);
             String lastYear = DateUtil.getLastYear(date);

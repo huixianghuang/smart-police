@@ -30,10 +30,6 @@ public class ScheduleService {
     }
 
     @Autowired
-    StationDao stationDao;
-    @Autowired
-    BatchService batchService;
-    @Autowired
     SubwayEventDao subwayEventDao;
     @Autowired
     SubwayWarningDao subwayWarningDao;
@@ -45,7 +41,8 @@ public class ScheduleService {
     EventCountDao eventCountDao;
     @Autowired
     LocalPoliceEventDao localPoliceEventDao;
-
+    @Autowired
+    StationDao stationDao;
 
     @Scheduled(cron = "0 35 02 ? * *")
     public void saveEventCategoryCount() {
@@ -128,17 +125,15 @@ public class ScheduleService {
         List<SubwayEvent> seList = new ArrayList<>();
         String currentTime = DateUtil.getCurrentTimePATTERN_yyyy_MM_dd2();
         String lastDay = DateUtil.getLastDayPattern2(currentTime) + "%";
-        //String lastDay1 = "2017/04/10%";
+        //String lastDay = "2017/04/10%";
         List<SubwayWarning> subwayWarningList = subwayWarningDao.findByTime(lastDay);
         if (subwayWarningList != null & !subwayWarningList.isEmpty()) {
             for (SubwayWarning sw : subwayWarningList) {
                 String stationId = null, stationName = null, lineId = null, lineName = null, eventId = null,
                         category = null, type = null, content = null, eventTime = null, police = null, policeId = null, time = null;
-//            if(sw.getDDMC()!=null){
-//                stationId=sw.getDDMC();
-//            }
                 if (sw.getDDMC() != null) {
                     stationName = utilService.convertStation(sw.getDDMC().trim());
+                    stationId = stationDao.findStationIdByStationName(stationName);
                 }
                 if (sw.getXL_ID() != null) {
                     lineId = sw.getXL_ID().trim();
@@ -182,6 +177,7 @@ public class ScheduleService {
                         type, content, eventTime, police, policeId, time));
             }
             subwayEventDao.save(seList);
+            logger.info("添加subway_event 成功");
         }
     }
 }

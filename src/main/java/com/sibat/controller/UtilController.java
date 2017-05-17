@@ -105,7 +105,7 @@ public class UtilController {
 
     @RequestMapping(value = "test", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response test(){
-        scheduleService.saveLocalPoliceEvent();
+        scheduleService.saveSubwayEvent();
         return new Response("200","success");
     }
 
