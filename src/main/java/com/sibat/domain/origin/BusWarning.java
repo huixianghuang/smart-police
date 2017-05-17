@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 /**
  * Created by tgw61 on 2017/5/2.
+ * 公交警情
  */
 @Entity
 @Table(name = "bus_warning")

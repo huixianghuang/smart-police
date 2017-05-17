@@ -11,4 +11,8 @@ import java.util.List;
 public interface EventCategoryCountDao extends JpaRepository<EventCategoryCount, Integer> {
     @Query("select obj.name,obj.count from EventCategoryCount obj where obj.time=?1")
     List<Object[]> findByTime(String date);
+
+    @Query("select obj from EventCategoryCount obj where obj.time=?1")
+    List<EventCategoryCount> findObjyTime(String date);
+
 }

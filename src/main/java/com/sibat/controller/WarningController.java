@@ -6,7 +6,6 @@ import com.sibat.Service.UtilService;
 import com.sibat.domain.origin.BusWarningDao;
 import com.sibat.domain.origin.SubwayWarningDao;
 import com.sibat.domain.origin.BusWarning;
-import com.sibat.domain.origin.SubwayWarning;
 import com.sibat.domain.other.*;
 import com.sibat.domain.pojo.*;
 import com.sibat.util.ConvertUtil;
@@ -129,6 +128,10 @@ public class WarningController {
     @Autowired
     LocalPoliceEventDao localPoliceEventDao;
 
+    /**
+     * @param date
+     * @return
+     */
     @RequestMapping(value = "statistic/month", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response statistic_month(@RequestParam("date") String date) {
         JSONObject result = new JSONObject();
@@ -161,13 +164,13 @@ public class WarningController {
             if (result.isEmpty())
                 return new Response("404", "not found");
             else
-                throw new Exception();
-            //return new Response("200", result);
+                return new Response("200", result);
         } catch (Exception e) {
-            logger.error("statistic/month", e.getCause());
+            e.printStackTrace();
             return new Response("500", "some errors happened");
         }
     }
+
 
 
     /**

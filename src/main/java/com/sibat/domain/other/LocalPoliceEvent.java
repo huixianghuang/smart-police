@@ -1,5 +1,7 @@
 package com.sibat.domain.other;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +16,7 @@ import java.util.Date;
  * insert into local_police_event(time,police_id,count)select time,police_id,count(*) from subway_event group by time,police_id order by time desc;
  *  update local_police_event set police =(select police from subway_event where local_police_event.police_id=subway_event.police_id limit 1);
  */
+@Data
 @Entity
 @Table(name = "LocalPoliceEvent")
 public class LocalPoliceEvent {
@@ -28,22 +31,6 @@ public class LocalPoliceEvent {
     private Date updateTime;
     private String type;//地铁,公交,公交线路
 
-    public String getPoliceId() {
-        return policeId;
-    }
-
-    public void setPoliceId(String policeId) {
-        this.policeId = policeId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public LocalPoliceEvent(String policeId, String police, String count) {
         this.policeId = policeId;
         this.police = police;
@@ -53,52 +40,12 @@ public class LocalPoliceEvent {
     public LocalPoliceEvent() {
     }
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPolice() {
-        return police;
-    }
-
-    public void setPolice(String police) {
+    public LocalPoliceEvent(String policeId, String police, String count, String time, Date createTime, String type) {
+        this.policeId = policeId;
         this.police = police;
-    }
-
-    public String getCount() {
-        return count;
-    }
-
-    public void setCount(String count) {
         this.count = count;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
         this.time = time;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+        this.type = type;
     }
 }

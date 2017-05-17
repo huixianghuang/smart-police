@@ -1,9 +1,6 @@
 package com.sibat.domain.other;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -12,10 +9,10 @@ import java.util.Date;
  * insert into event_category_count(time,name,count) select time,category,count(*) from subway_event group by category,time order by time desc;
  */
 @Entity
-@Table(name = "EventCategoryCount")
+@Table(name = "event_category_count")
 public class EventCategoryCount {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name;//类型
     private String count;//统计值
@@ -43,9 +40,26 @@ public class EventCategoryCount {
     public EventCategoryCount() {
     }
 
+    public EventCategoryCount(String name, String count, String time, Date createTime, String type) {
+        this.name = name;
+        this.count = count;
+        this.time = time;
+        this.createTime = createTime;
+        this.type = type;
+    }
+
     public EventCategoryCount(String name, String count) {
         this.name = name;
         this.count = count;
+    }
+
+    public EventCategoryCount(String name, String count, String time, Date createTime, Date updateTime, String type) {
+        this.name = name;
+        this.count = count;
+        this.time = time;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.type = type;
     }
 
     public String getName() {

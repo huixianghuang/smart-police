@@ -1,5 +1,7 @@
 package com.sibat.domain.other;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,8 +12,9 @@ import java.util.Date;
  * 警情按月统计表
  * Created by tgw61 on 2017/5/3.
  * 插入历史数据
- *  insert into event_count(time,event_sum) select time,count(*) from subway_event group by time order by time;
+ * insert into event_count(time,event_sum) select time,count(*) from subway_event group by time order by time;
  */
+@Data
 @Entity
 @Table(name = "EventCount")
 public class EventCount {
@@ -34,43 +37,11 @@ public class EventCount {
         this.updateTime = updateTime;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
+    public EventCount(String time, Integer eventSum, Date createTime, String type) {
         this.time = time;
-    }
-
-    public Integer getEventSum() {
-        return eventSum;
-    }
-
-    public void setEventSum(Integer eventSum) {
         this.eventSum = eventSum;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+        this.type = type;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }
