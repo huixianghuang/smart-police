@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by tgw61 on 2017/4/28.
@@ -165,20 +167,32 @@ public class WarningController {
             Integer lastYearCount = eventCountDao.findByTime(lastYear);
 
             List<Object[]> CategoryCounts = eventCategoryCountDao.findByTime(date);
+
             List<CategoryCount> eventCategoryCountList = new ArrayList<>();
             if (!CategoryCounts.isEmpty())
                 eventCategoryCountList = ConvertUtil.castEntity(CategoryCounts, CategoryCount.class);
 
             List<Object[]> localPoliceEvents = localPoliceEventDao.findByTime(date);
-            List<LocalPoliceEventCount> localPoliceEventList = new ArrayList<>();
-            if (!localPoliceEvents.isEmpty())
+            List<LocalPoliceEventCount> localPoliceEventList;
+
+            List<LocalPoliceEventCount> departmentList =new ArrayList<>();
+            if (!localPoliceEvents.isEmpty()) {
                 localPoliceEventList = ConvertUtil.castEntity(localPoliceEvents, LocalPoliceEventCount.class);
+                //对police做筛选
+                for ( LocalPoliceEventCount obj:localPoliceEventList) {
+                    if (obj.getPolice().contains("公交") &&!"公交分局".equals(obj.getPolice())
+                            &&! "公交分局执法专业队".equals(obj.getPolice())
+                            &&!"公交分局刑警大队".equals(obj.getPolice())) {
+                        departmentList.add(obj);
+                    }
+                }
+            }
 
             result.put("currentMonth", currentMonthCount);
             result.put("lastMonth", lastMonthCount);
             result.put("lastYear", lastYearCount);
             result.put("category", eventCategoryCountList);
-            result.put("department", localPoliceEventList);
+            result.put("department", departmentList);
 
             if (result.isEmpty())
                 return new Response("404", "not found");

@@ -59,7 +59,8 @@ public class ScheduleService {
                 eventCategoryCountDao.delete(eccs);
                 logger.info("删除EventCategoryCount成功" + date);
                 for (LikeMap lm : lms) {
-                    ecc.add(new EventCategoryCount(lm.getKey(), lm.getValue().toString(), date, new Date(), "station"));
+                    if (lm.getKey() != null)
+                        ecc.add(new EventCategoryCount(lm.getKey(), lm.getValue().toString(), date, new Date(), "station"));
                 }
                 eventCategoryCountDao.save(ecc);
                 logger.info("更新EventCategoryCount成功" + date);
@@ -106,8 +107,10 @@ public class ScheduleService {
                 localPoliceEventDao.delete(eccs);
                 logger.info("删除LocalPoliceEvent成功" + date);
                 for (LikeMap lm : lms) {
-                    String police = subwayEventDao.findPoliceByPoliceId(lm.getKey());
-                    ecc.add(new LocalPoliceEvent(lm.getKey(), police, lm.getValue().toString(), date, new Date(), "station"));
+                    if (lm.getKey() != null) {
+                        String police = subwayEventDao.findPoliceByPoliceId(lm.getKey());
+                        ecc.add(new LocalPoliceEvent(lm.getKey(), police, lm.getValue().toString(), date, new Date(), "station"));
+                    }
                 }
                 localPoliceEventDao.save(ecc);
                 logger.info("更新EventCategoryCount成功" + date);
