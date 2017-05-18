@@ -2,10 +2,10 @@ package com.sibat.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sibat.domain.other.KeyPerson;
-import com.sibat.domain.other.KeyPersonDao;
-import com.sibat.domain.other.PersonPath;
-import com.sibat.domain.other.PersonPathDao;
+import com.sibat.domain.origin.KeyPerson;
+import com.sibat.domain.origin.KeyPersonDao;
+import com.sibat.domain.origin.PersonPath;
+import com.sibat.domain.origin.PersonPathDao;
 import com.sibat.domain.pojo.LikeMap;
 import com.sibat.util.ConvertUtil;
 import com.sibat.util.Response;
@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,29 +32,43 @@ public class KeyPersonController {
     @Autowired
     PersonPathDao personPathDao;
 
+    /**
+     * 重点人员预警统计
+     *
+     * @return
+     */
     @RequestMapping(value = "group_by_police", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response group_by_police() {
-        List<Object[]> policeCount = keyPersonDao.countSumGroupByPolice();
-        if (policeCount != null && !policeCount.isEmpty()) {
-            policeCount.remove(0);
-            try {
+        try {
+            List<Object[]> policeCount = keyPersonDao.countSumGroupByPolice();
+            if (policeCount != null && !policeCount.isEmpty()) {
+                //防止空值报错
+                for (Object[] array : policeCount) {
+                    if (array[0] == null)
+                        policeCount.remove(array);
+                }
+
                 List<LikeMap> likeMapList = ConvertUtil.castEntity(policeCount, LikeMap.class);
                 return new Response("200", likeMapList);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return new Response("500", "some errors happend");
+            } else {
+                return new Response("200", "未找到");
             }
-        } else {
-            return new Response("200", "未找到");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Response("500", "some errors happend");
         }
     }
 
+    /**
+     * 预警类别统计
+     *
+     * @return
+     */
     @RequestMapping(value = "group_by_type", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response group_by_type() {
         JSONObject reuslt = new JSONObject();
         List<Object[]> typeCount = keyPersonDao.countSumGroupByType();
         if (typeCount != null && !typeCount.isEmpty()) {
-            typeCount.remove(0);
             try {
                 List<LikeMap> likeMapList = ConvertUtil.castEntity(typeCount, LikeMap.class);
                 int sum = 0;
@@ -86,21 +104,36 @@ public class KeyPersonController {
 
     @RequestMapping(value = "warning_person", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response warning_person(@RequestParam("date") String date) {
+        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateClass = null;
+        try {
+            dateClass = fmt.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         JSONArray result = new JSONArray();
         JSONObject obj;
-        List<PersonPath> pps = personPathDao.findByTime(date + "%");
+        List<PersonPath> pps = personPathDao.findByTime(dateClass);
         try {
             if (pps != null && !pps.isEmpty()) {
                 for (PersonPath pp : pps) {
                     obj = new JSONObject();
-                    List<KeyPerson> kp = keyPersonDao.findByID(pp.getS_ID_NUMBER());
-                    if (kp != null && !kp.isEmpty()) {
-                        obj.put("name", pp.getNAME());
-                        obj.put("time", pp.getCREATE_DATE());
-                        obj.put("state", convertState(kp.get(0).getZDRYSTATE()));
-                        obj.put("type", convertType(kp.get(0).getZDRYTYPE()));
-                        result.add(obj);
+                    obj.put("person_path", pp);
+                    KeyPerson kp = keyPersonDao.findByID(pp.getS_ID_NUMBER());
+                    if (kp != null) {
+                        if (kp.getZDRYSTATE() != null)
+                            obj.put("state", convertState(kp.getZDRYSTATE()));
+                        else
+                            obj.put("state", null);
+                        if (kp.getZDRYTYPE() != null)
+                            obj.put("type", convertType(kp.getZDRYTYPE()));
+                        else
+                            obj.put("type", null);
+                    }else{
+                        obj.put("state", null);
+                        obj.put("type", null);
                     }
+                    result.add(obj);
                 }
             }
             return new Response("200", result);
