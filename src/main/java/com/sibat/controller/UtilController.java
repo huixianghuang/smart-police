@@ -1,19 +1,16 @@
 package com.sibat.controller;
 
-import com.sibat.Service.ScheduleService;
 import com.sibat.Service.UtilService;
 import com.sibat.domain.origin.BusWarning;
 import com.sibat.domain.origin.BusWarningDao;
-import com.sibat.domain.origin.SubwayWarning;
-import com.sibat.domain.origin.SubwayWarningDao;
+import com.sibat.domain.origin.JqfxJqlrDt;
+import com.sibat.domain.origin.JqfxJqlrDtDao;
 import com.sibat.domain.other.*;
 import com.sibat.util.Response;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -26,7 +23,7 @@ import java.util.List;
 public class UtilController {
     Logger logger = Logger.getLogger(UtilController.class);
     @Autowired
-    SubwayWarningDao subwayWarningDao;
+    JqfxJqlrDtDao jqfxJqlrDtDao;
     @Autowired
     SubwayEventDao subwayEventDao;
     @Autowired
@@ -38,8 +35,6 @@ public class UtilController {
     @Autowired
     BusEventDao busEventDao;
 
-    @Autowired
-    ScheduleService scheduleService;
     /**
      * 将数据保存到新库
      *
@@ -48,8 +43,8 @@ public class UtilController {
     @RequestMapping(value = "saveStationData", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response saveStationData() {
 //        List<SubwayEvent> seList = new ArrayList<>();
-//        List<SubwayWarning> swList = subwayWarningDao.findAll();
-//        for (SubwayWarning sw : swList) {
+//        List<JqfxJqlrDt> swList = jqfxJqlrDtDao.findAll();
+//        for (JqfxJqlrDt sw : swList) {
 //            String stationId = null, stationName = null, lineId = null, lineName = null, eventId = null,
 //                    category = null, type = null, content = null, eventTime = null, police = null, policeId = null, time = null;
 ////            if(sw.getDDMC()!=null){
@@ -98,19 +93,73 @@ public class UtilController {
 //            seList.add(new SubwayEvent(stationId, stationName, lineId, lineName, eventId, category, type, content, eventTime, police, policeId, time));
 //        }
 //        subwayEventDao.save(seList);//batchService.batchInsert(seList);
-        scheduleService.saveSubwayEvent();
+        List<SubwayEvent> seList = new ArrayList<>();
+        List<JqfxJqlrDt> jqfxJqlrDtList = jqfxJqlrDtDao.findAllObj();
+        if (jqfxJqlrDtList != null & !jqfxJqlrDtList.isEmpty()) {
+            for (JqfxJqlrDt sw : jqfxJqlrDtList) {
+                String stationId = null, stationName = null, lineId = null, lineName = null, eventId = null,
+                        category = null, type = null, content = null, eventTime = null, police = null, policeId = null, time = null;
+                if (sw.getDDMC() != null) {
+                    stationName = utilService.convertStation(sw.getDDMC().trim());
+                    stationId = stationDao.findStationIdByStationName(stationName);
+                }
+                if (sw.getXL_ID() != null) {
+                    lineId = sw.getXL_ID().trim();
+                }
+                if (sw.getXL() != null) {
+                    lineName = sw.getXL().trim();
+                }
+                if (sw.getJCJ_ID() != null) {
+                    eventId = sw.getJCJ_ID().trim();
+                }
+                if (sw.getJQXZ() != null) {
+                    category = sw.getJQXZ().trim();
+                }
+                if (sw.getJQLB() != null) {
+                    type = sw.getJQLB().trim();
+                }
+                if (sw.getREMARK() != null) {
+                    content = sw.getREMARK().trim();
+                }
+                if (sw.getAF_TIME() != null) {
+                    eventTime = sw.getAF_TIME().trim();
+                }
+
+                if (sw.getJJDW_NAME() != null) {
+                    police = sw.getJJDW_NAME().trim();
+                }
+                if (sw.getJJDW_ID() != null) {
+                    policeId = sw.getJJDW_ID().trim();
+                }
+
+                if (sw.getAF_TIME() != null) {
+                    try {
+                        time = sw.getAF_TIME().split(" ")[0];
+                        time = time.split("-")[0] + "-" + time.split("-")[1];
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        logger.info(time);
+                    }
+                }
+                seList.add(new SubwayEvent(stationId, stationName, lineId,
+                        lineName, eventId, category,
+                        type, content, eventTime, police, policeId, time));
+            }
+            subwayEventDao.save(seList);
+            logger.info("添加subway_event成功");
+        }
         return new Response("200", "success");
     }
 
 
     @RequestMapping(value = "test", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response test(){
-        scheduleService.saveSubwayEvent();
-        return new Response("200","success");
+    public Response test() {
+//        scheduleService.saveSubwayEvent();
+        return new Response("200", "success");
     }
 
     /**
      * 保存公交警情数据
+     *
      * @return
      */
     @RequestMapping(value = "saveBusData", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)

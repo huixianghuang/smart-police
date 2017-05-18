@@ -1,7 +1,7 @@
 package com.sibat.controller;
 
 import com.sibat.domain.origin.BusWarningDao;
-import com.sibat.domain.origin.SubwayWarningDao;
+import com.sibat.domain.origin.JqfxJqlrDtDao;
 import com.sibat.util.DateUtil;
 import com.sibat.util.Response;
 import org.apache.log4j.Logger;
@@ -22,7 +22,7 @@ public class WarningAnalysis {
     @Autowired
     BusWarningDao busWarningDao;
     @Autowired
-    SubwayWarningDao subwayWarningDao;
+    JqfxJqlrDtDao jqfxJqlrDtDao;
     /**
      * 警情分析
      *
@@ -43,10 +43,10 @@ public class WarningAnalysis {
         List<String> times = DateUtil.getSerialDays(start,end);
         for(int i=0,size =times.size();i<size;i++){
             int bus =busWarningDao.count(times.get(i)+"%");
-            int subway =subwayWarningDao.count(times.get(i)+"%");
+            int subway = jqfxJqlrDtDao.count(times.get(i)+"%");
         }
         int busAll =busWarningDao.count(start,end);
-        int subwayAll =subwayWarningDao.count(start,end);
+        int subwayAll = jqfxJqlrDtDao.count(start,end);
         List<Object[]> busobj=busWarningDao.countByPolice(start,end);
         logger.info("ha");
 

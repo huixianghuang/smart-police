@@ -1,5 +1,6 @@
 package com.sibat.domain.other;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
  *
  *  select * from subway_event where date(event_time)='2012/12/29'; 提取只有日期的时间
  */
+@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "subway_event")

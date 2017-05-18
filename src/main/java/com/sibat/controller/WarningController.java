@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sibat.Service.UtilService;
 import com.sibat.domain.origin.BusWarningDao;
-import com.sibat.domain.origin.SubwayWarningDao;
+import com.sibat.domain.origin.JqfxJqlrDtDao;
 import com.sibat.domain.origin.BusWarning;
 import com.sibat.domain.other.*;
 import com.sibat.domain.pojo.*;
@@ -29,7 +29,7 @@ import java.util.List;
 public class WarningController {
     org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(WarningController.class);
     @Autowired
-    SubwayWarningDao subwayWarningDao;
+    JqfxJqlrDtDao jqfxJqlrDtDao;
     @Autowired
     BusWarningDao busWarningDao;
     @Autowired
@@ -52,11 +52,16 @@ public class WarningController {
             if (date == "") {
                 String currentTime = DateUtil.getCurrentMonth();
                 date = DateUtil.getLastMonth(currentTime);
+            } else {
+                StringBuffer sb = new StringBuffer(date.split("/")[0]);
+                sb.append("-").append(date.split("/")[1]);
+                date = sb.toString();
             }
             List<Object[]> list = subwayEventDao.selectByEventTime(date + "%");
-            List<StationCount> scList = new ArrayList<>();
+            List<StationCount> scList;
             if (list != null && !list.isEmpty())
-                scList = ConvertUtil.castEntity(list, StationCount.class);
+                if (list.get(0)[0] == null) list.remove(list.get(0));
+            scList = ConvertUtil.castEntity(list, StationCount.class);
             JSONObject obj;
             int sum = 0;
             if (scList != null && !scList.isEmpty())
@@ -75,6 +80,7 @@ public class WarningController {
                 }
             logger.info("sum=" + sum);
         } catch (Exception e) {
+            e.printStackTrace();
             logger.error("api_count", e.getCause());
             return new Response("500", "some errors happened");
         }
@@ -85,7 +91,8 @@ public class WarningController {
     /**
      * 查询一个站点某一天的警情列表
      *
-     * @param date 需要查询的日期，如果为空则默认为昨天
+     * @param date 格式 yyyy/MM
+     *             需要查询的日期，如果为空则默认为昨天
      * @return
      */
     @RequestMapping(value = "station/list", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
@@ -96,6 +103,10 @@ public class WarningController {
             if (date == "") {
                 String currentTime = DateUtil.getCurrentMonth();
                 date = DateUtil.getLastMonth(currentTime);
+            } else {
+                StringBuffer sb = new StringBuffer(date.split("/")[0]);
+                sb.append("-").append(date.split("/")[1]);
+                date = sb.toString();
             }
             List<Object[]> objects = subwayEventDao.findByStationIdAndTime(station_id, date + "%");
             List<Event> events = new ArrayList<>();
@@ -131,6 +142,7 @@ public class WarningController {
     /**
      * 当月警情
      * 按类型 派出所 总数 进行警情显示
+     *
      * @param date
      * @return
      */
@@ -140,6 +152,11 @@ public class WarningController {
         try {
             if (date == "")
                 date = DateUtil.getCurrentMonth();
+            else {
+                StringBuffer sb = new StringBuffer(date.split("/")[0]);
+                sb.append("-").append(date.split("/")[1]);
+                date = sb.toString();
+            }
             String lastMonth = DateUtil.getLastMonth(date);
             String lastYear = DateUtil.getLastYear(date);
 
@@ -172,7 +189,6 @@ public class WarningController {
             return new Response("500", "some errors happened");
         }
     }
-
 
 
     /**

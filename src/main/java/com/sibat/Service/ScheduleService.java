@@ -1,7 +1,7 @@
 package com.sibat.Service;
 
-import com.sibat.domain.origin.SubwayWarning;
-import com.sibat.domain.origin.SubwayWarningDao;
+import com.sibat.domain.origin.JqfxJqlrDt;
+import com.sibat.domain.origin.JqfxJqlrDtDao;
 import com.sibat.domain.other.*;
 import com.sibat.domain.pojo.LikeMap;
 import com.sibat.util.ConvertUtil;
@@ -32,7 +32,7 @@ public class ScheduleService {
     @Autowired
     SubwayEventDao subwayEventDao;
     @Autowired
-    SubwayWarningDao subwayWarningDao;
+    JqfxJqlrDtDao jqfxJqlrDtDao;
     @Autowired
     UtilService utilService;
     @Autowired
@@ -126,9 +126,9 @@ public class ScheduleService {
         String currentTime = DateUtil.getCurrentTimePATTERN_yyyy_MM_dd2();
         String lastDay = DateUtil.getLastDayPattern2(currentTime) + "%";
         //String lastDay = "2017/04/10%";
-        List<SubwayWarning> subwayWarningList = subwayWarningDao.findByTime(lastDay);
-        if (subwayWarningList != null & !subwayWarningList.isEmpty()) {
-            for (SubwayWarning sw : subwayWarningList) {
+        List<JqfxJqlrDt> jqfxJqlrDtList = jqfxJqlrDtDao.findByTime(lastDay);
+        if (jqfxJqlrDtList != null & !jqfxJqlrDtList.isEmpty()) {
+            for (JqfxJqlrDt sw : jqfxJqlrDtList) {
                 String stationId = null, stationName = null, lineId = null, lineName = null, eventId = null,
                         category = null, type = null, content = null, eventTime = null, police = null, policeId = null, time = null;
                 if (sw.getDDMC() != null) {

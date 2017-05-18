@@ -30,7 +30,6 @@ public class DateUtil {
     private static String PATTERN_yy_MM_dd_HHmmss2 = "yy/MM/dd HH:mm:ss";
     private static String PATTERN_yyyy_MM_dd2 = "yyyy/MM/dd";
     private static String PATTERN_yyyyMM = "yyyy/MM";
-
     @Test
     public void test() {
 //        List<String> reustl = getSerialDays("2017/02/01", "2017/02/10");
@@ -140,13 +139,13 @@ public class DateUtil {
     }
 
     public static String getCurrentMonth() throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyyMM);
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyy_MM);
         Calendar calendar = Calendar.getInstance();
         return sdf.format(calendar.getTime());
     }
 
     public static String getLastMonth(String time) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyyMM);
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyy_MM);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(sdf.parse(time));
         calendar.add(Calendar.MONTH, -1);
@@ -155,7 +154,7 @@ public class DateUtil {
 
 
     public static String getLastYear(String time) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyyMM);
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyy_MM);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(sdf.parse(time));
         calendar.add(Calendar.YEAR, -1);
