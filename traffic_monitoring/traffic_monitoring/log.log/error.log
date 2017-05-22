@@ -1,0 +1,383 @@
+2017-05-17 16:59:26.843 [main] ERROR o.s.b.b.PropertiesConfigurationFactory -Properties configuration failed validation
+2017-05-17 16:59:26.846 [main] ERROR o.s.b.b.PropertiesConfigurationFactory -Field error in object 'spring.datasource' on field 'type': rejected value [com.alibaba.druid.pool.DruidDataSource]; codes [typeMismatch.spring.datasource.type,typeMismatch.type,typeMismatch.java.lang.Class,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.datasource.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]]
+2017-05-17 16:59:26.871 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter -
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Binding to target org.springframework.boot.autoconfigure.jdbc.DataSourceProperties@1989dc7 failed:
+
+    Property: spring.datasource.type
+    Value: com.alibaba.druid.pool.DruidDataSource
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]
+
+
+Action:
+
+Update your application's configuration
+
+2017-05-17 17:00:55.426 [main] ERROR o.s.b.b.PropertiesConfigurationFactory -Properties configuration failed validation
+2017-05-17 17:00:55.426 [main] ERROR o.s.b.b.PropertiesConfigurationFactory -Field error in object 'spring.datasource' on field 'type': rejected value [com.alibaba.druid.pool.DruidDataSource]; codes [typeMismatch.spring.datasource.type,typeMismatch.type,typeMismatch.java.lang.Class,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.datasource.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]]
+2017-05-17 17:00:55.446 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter -
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Binding to target org.springframework.boot.autoconfigure.jdbc.DataSourceProperties@103d448 failed:
+
+    Property: spring.datasource.type
+    Value: com.alibaba.druid.pool.DruidDataSource
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]
+
+
+Action:
+
+Update your application's configuration
+
+2017-05-17 17:02:29.722 [main] ERROR o.s.b.b.PropertiesConfigurationFactory -Properties configuration failed validation
+2017-05-17 17:02:29.723 [main] ERROR o.s.b.b.PropertiesConfigurationFactory -Field error in object 'spring.datasource' on field 'type': rejected value [com.alibaba.druid.pool.DruidDataSource]; codes [typeMismatch.spring.datasource.type,typeMismatch.type,typeMismatch.java.lang.Class,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.datasource.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]]
+2017-05-17 17:02:29.747 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter -
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Binding to target org.springframework.boot.autoconfigure.jdbc.DataSourceProperties@19f4597 failed:
+
+    Property: spring.datasource.type
+    Value: com.alibaba.druid.pool.DruidDataSource
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]
+
+
+Action:
+
+Update your application's configuration
+
+2017-05-17 17:09:00.346 [pool-2-thread-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler -Unexpected error occurred in scheduled task.
+org.jfaster.mango.jdbc.exception.DataIntegrityViolationException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:09, 0).; caused by: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:09, 0).
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:74)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:09, 0).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+2017-05-17 17:10:00.062 [pool-2-thread-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler -Unexpected error occurred in scheduled task.
+org.jfaster.mango.jdbc.exception.DataIntegrityViolationException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:10, 0).; caused by: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:10, 0).
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:74)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:10, 0).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+2017-05-17 17:11:10.061 [pool-2-thread-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler -Unexpected error occurred in scheduled task.
+org.jfaster.mango.jdbc.exception.DataIntegrityViolationException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:11, 0).; caused by: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:11, 0).
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:74)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:11, 0).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+2017-05-17 17:12:00.059 [pool-2-thread-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler -Unexpected error occurred in scheduled task.
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(1) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(1) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(1) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+2017-05-17 17:13:00.435 [pool-2-thread-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler -Unexpected error occurred in scheduled task.
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(2) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(2) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(2) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+2017-05-17 17:14:00.070 [pool-2-thread-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler -Unexpected error occurred in scheduled task.
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(3) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(3) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(3) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+2017-05-17 17:15:00.266 [pool-2-thread-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler -Unexpected error occurred in scheduled task.
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(4) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(4) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(4) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+2017-05-17 17:16:00.066 [pool-2-thread-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler -Unexpected error occurred in scheduled task.
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(5) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(5) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(5) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted

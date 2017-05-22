@@ -1,0 +1,24 @@
+2017-05-15 10:46:41.147 [main] INFO  com.sibat.OriginDemoApplicationTests -Starting OriginDemoApplicationTests on canno with PID 14156 (started by tgw61 in I:\git_repository\智慧公安公交地铁防控\traffic_monitoring)
+2017-05-15 10:46:41.148 [main] INFO  com.sibat.OriginDemoApplicationTests -The following profiles are active: prod
+2017-05-15 10:46:41.183 [main] INFO  o.s.w.c.s.GenericWebApplicationContext -Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1f62e33: startup date [Mon May 15 10:46:41 CST 2017]; root of context hierarchy
+2017-05-15 10:46:42.761 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-05-15 10:46:42.776 [main] INFO  o.h.jpa.internal.util.LogHelper -HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-05-15 10:46:42.840 [main] INFO  org.hibernate.Version -HHH000412: Hibernate Core {5.0.12.Final}
+2017-05-15 10:46:42.841 [main] INFO  org.hibernate.cfg.Environment -HHH000206: hibernate.properties not found
+2017-05-15 10:46:42.843 [main] INFO  org.hibernate.cfg.Environment -HHH000021: Bytecode provider name : javassist
+2017-05-15 10:46:42.882 [main] INFO  o.h.annotations.common.Version -HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-05-15 10:46:42.985 [main] INFO  org.hibernate.dialect.Dialect -HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2017-05-15 10:46:43.482 [main] INFO  o.h.tool.hbm2ddl.SchemaUpdate -HHH000228: Running hbm2ddl schema update
+2017-05-15 10:46:43.559 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-05-15 10:46:44.220 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter -Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1f62e33: startup date [Mon May 15 10:46:41 CST 2017]; root of context hierarchy
+2017-05-15 10:46:44.288 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping -Mapped "{[/api/event/metro/traffic_congestion],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public com.sibat.util.Response com.sibat.controller.Controller.count(java.lang.String)
+2017-05-15 10:46:44.291 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping -Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-05-15 10:46:44.291 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping -Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-05-15 10:46:44.315 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping -Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-15 10:46:44.315 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping -Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-15 10:46:44.354 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping -Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-15 10:46:44.580 [main] INFO  com.sibat.OriginDemoApplicationTests -Started OriginDemoApplicationTests in 3.653 seconds (JVM running for 4.304)
+2017-05-15 10:46:44.618 [Thread-3] INFO  o.s.w.c.s.GenericWebApplicationContext -Closing org.springframework.web.context.support.GenericWebApplicationContext@1f62e33: startup date [Mon May 15 10:46:41 CST 2017]; root of context hierarchy
+2017-05-15 10:46:44.620 [Thread-3] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -Closing JPA EntityManagerFactory for persistence unit 'default'

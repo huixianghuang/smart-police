@@ -1,0 +1,6 @@
+2017-05-18 11:50:27.912 [main] INFO  org.jfaster.mango.operator.Mango -Initializing operator for SubwayDao.findByTime(String)
+2017-05-18 11:50:47.055 [main] WARN  org.jfaster.mango.operator.Mango -Find out more mango instances, it is recommended to use only one
+2017-05-18 11:50:47.058 [main] INFO  org.jfaster.mango.operator.Mango -Initializing operator for FullFlowDao.findAll()
+2017-05-18 16:04:50.483 [main] INFO  com.sibat.service.ScheduleService -result---0.119101185
+2017-05-18 16:04:50.495 [main] INFO  org.jfaster.mango.operator.Mango -Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-18 16:04:50.513 [main] INFO  com.sibat.service.ScheduleService -2017-05-18 16:04

@@ -1,0 +1,883 @@
+2017-05-15 10:46:41.147  INFO 14156 --- [main] com.sibat.OriginDemoApplicationTests     : Starting OriginDemoApplicationTests on canno with PID 14156 (started by tgw61 in I:\git_repository\�ǻ۹���������������\traffic_monitoring)
+2017-05-15 10:46:41.148  INFO 14156 --- [main] com.sibat.OriginDemoApplicationTests     : The following profiles are active: prod
+2017-05-15 10:46:41.183  INFO 14156 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1f62e33: startup date [Mon May 15 10:46:41 CST 2017]; root of context hierarchy
+2017-05-15 10:46:42.761  INFO 14156 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-05-15 10:46:42.776  INFO 14156 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-05-15 10:46:42.840  INFO 14156 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-05-15 10:46:42.841  INFO 14156 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-05-15 10:46:42.843  INFO 14156 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-05-15 10:46:42.882  INFO 14156 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-05-15 10:46:42.985  INFO 14156 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2017-05-15 10:46:43.482  INFO 14156 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2017-05-15 10:46:43.559  INFO 14156 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-05-15 10:46:44.220  INFO 14156 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1f62e33: startup date [Mon May 15 10:46:41 CST 2017]; root of context hierarchy
+2017-05-15 10:46:44.288  INFO 14156 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/event/metro/traffic_congestion],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public com.sibat.util.Response com.sibat.controller.Controller.count(java.lang.String)
+2017-05-15 10:46:44.291  INFO 14156 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-05-15 10:46:44.291  INFO 14156 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-05-15 10:46:44.315  INFO 14156 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-15 10:46:44.315  INFO 14156 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-15 10:46:44.354  INFO 14156 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-15 10:46:44.580  INFO 14156 --- [main] com.sibat.OriginDemoApplicationTests     : Started OriginDemoApplicationTests in 3.653 seconds (JVM running for 4.304)
+2017-05-15 10:46:44.618  INFO 14156 --- [Thread-3] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@1f62e33: startup date [Mon May 15 10:46:41 CST 2017]; root of context hierarchy
+2017-05-15 10:46:44.620  INFO 14156 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2017-05-17 16:57:25.567  INFO 14880 --- [main] com.sibat.OriginDemoApplication          : Starting OriginDemoApplication on canno with PID 14880 (started by tgw61 in I:\git_repository\智慧公安公交地铁防控\traffic_monitoring)
+2017-05-17 16:57:25.572  INFO 14880 --- [main] com.sibat.OriginDemoApplication          : The following profiles are active: prod
+2017-05-17 16:57:25.621  INFO 14880 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@17b0699: startup date [Wed May 17 16:57:25 CST 2017]; root of context hierarchy
+2017-05-17 16:57:27.200  INFO 14880 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8998 (http)
+2017-05-17 16:57:27.209  INFO 14880 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-05-17 16:57:27.210  INFO 14880 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.14
+2017-05-17 16:57:27.356  INFO 14880 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-05-17 16:57:27.356  INFO 14880 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1735 ms
+2017-05-17 16:57:27.518  INFO 14880 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-05-17 16:57:27.521  INFO 14880 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-05-17 16:57:27.522  INFO 14880 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-05-17 16:57:27.522  INFO 14880 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-05-17 16:57:27.522  INFO 14880 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-05-17 16:57:27.523  INFO 14880 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'simpleCORSFilter' to: [/*]
+2017-05-17 16:57:28.081  INFO 14880 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-05-17 16:57:28.097  INFO 14880 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-05-17 16:57:28.174  INFO 14880 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-05-17 16:57:28.175  INFO 14880 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-05-17 16:57:28.177  INFO 14880 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-05-17 16:57:28.229  INFO 14880 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-05-17 16:57:28.361  INFO 14880 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2017-05-17 16:57:28.787  INFO 14880 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2017-05-17 16:57:28.858  INFO 14880 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-05-17 16:57:29.418  INFO 14880 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@17b0699: startup date [Wed May 17 16:57:25 CST 2017]; root of context hierarchy
+2017-05-17 16:57:29.499  INFO 14880 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/event/metro/traffic_congestion],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public com.sibat.util.Response com.sibat.controller.Controller.count(java.lang.String)
+2017-05-17 16:57:29.501  INFO 14880 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-05-17 16:57:29.502  INFO 14880 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-05-17 16:57:29.542  INFO 14880 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 16:57:29.542  INFO 14880 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 16:57:29.586  INFO 14880 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 16:57:29.979  INFO 14880 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-05-17 16:57:29.988  INFO 14880 --- [main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2017-05-17 16:57:30.044  INFO 14880 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8998 (http)
+2017-05-17 16:57:30.048  INFO 14880 --- [main] com.sibat.OriginDemoApplication          : Started OriginDemoApplication in 4.782 seconds (JVM running for 5.285)
+2017-05-17 16:58:00.023  INFO 14880 --- [pool-3-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 16:58:00.113  WARN 14880 --- [pool-3-thread-1] org.jfaster.mango.operator.Mango         : Find out more mango instances, it is recommended to use only one
+2017-05-17 16:58:00.114  INFO 14880 --- [pool-3-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 16:58:00.134  INFO 14880 --- [pool-3-thread-1] com.sibat.service.ScheduleService        : 383
+2017-05-17 16:58:00.134  INFO 14880 --- [pool-3-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 16:58:00.134  INFO 14880 --- [pool-3-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 16:58:00.152  INFO 14880 --- [pool-3-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 16:58
+2017-05-17 16:59:00.002  INFO 14880 --- [pool-3-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 16:59:00.022  INFO 14880 --- [pool-3-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 16:59:00.038  INFO 14880 --- [pool-3-thread-1] com.sibat.service.ScheduleService        : 383
+2017-05-17 16:59:00.038  INFO 14880 --- [pool-3-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 16:59:00.039  INFO 14880 --- [pool-3-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 16:59:00.039  INFO 14880 --- [pool-3-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 16:59
+2017-05-17 16:59:25.269  INFO 7128 --- [main] com.sibat.OriginDemoApplication          : Starting OriginDemoApplication on canno with PID 7128 (started by tgw61 in I:\git_repository\智慧公安公交地铁防控\traffic_monitoring)
+2017-05-17 16:59:25.271  INFO 7128 --- [main] com.sibat.OriginDemoApplication          : The following profiles are active: dev
+2017-05-17 16:59:25.315  INFO 7128 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1010382: startup date [Wed May 17 16:59:25 CST 2017]; root of context hierarchy
+2017-05-17 16:59:26.550  INFO 7128 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8998 (http)
+2017-05-17 16:59:26.558  INFO 7128 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-05-17 16:59:26.559  INFO 7128 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.14
+2017-05-17 16:59:26.665  INFO 7128 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-05-17 16:59:26.665  INFO 7128 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1350 ms
+2017-05-17 16:59:26.801  INFO 7128 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-05-17 16:59:26.805  INFO 7128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-05-17 16:59:26.805  INFO 7128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-05-17 16:59:26.806  INFO 7128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-05-17 16:59:26.806  INFO 7128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-05-17 16:59:26.806  INFO 7128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'simpleCORSFilter' to: [/*]
+2017-05-17 16:59:26.843 ERROR 7128 --- [main] o.s.b.b.PropertiesConfigurationFactory   : Properties configuration failed validation
+2017-05-17 16:59:26.846 ERROR 7128 --- [main] o.s.b.b.PropertiesConfigurationFactory   : Field error in object 'spring.datasource' on field 'type': rejected value [com.alibaba.druid.pool.DruidDataSource]; codes [typeMismatch.spring.datasource.type,typeMismatch.type,typeMismatch.java.lang.Class,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.datasource.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]]
+2017-05-17 16:59:26.847  WARN 7128 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Generic.class]: Unsatisfied dependency expressed through method 'dataSource' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties': Could not bind properties to DataSourceProperties (prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true, ignoreNestedProperties=false); nested exception is org.springframework.validation.BindException: org.springframework.boot.bind.RelaxedDataBinder$RelaxedBeanPropertyBindingResult: 1 errors
+Field error in object 'spring.datasource' on field 'type': rejected value [com.alibaba.druid.pool.DruidDataSource]; codes [typeMismatch.spring.datasource.type,typeMismatch.type,typeMismatch.java.lang.Class,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.datasource.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]]
+2017-05-17 16:59:26.848  INFO 7128 --- [main] o.apache.catalina.core.StandardService   : Stopping service Tomcat
+2017-05-17 16:59:26.856  WARN 7128 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:164)
+ com.mysql.jdbc.NonRegisteringDriver$1.run(NonRegisteringDriver.java:93)
+2017-05-17 16:59:26.868  INFO 7128 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2017-05-17 16:59:26.871 ERROR 7128 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Binding to target org.springframework.boot.autoconfigure.jdbc.DataSourceProperties@1989dc7 failed:
+
+    Property: spring.datasource.type
+    Value: com.alibaba.druid.pool.DruidDataSource
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]
+
+
+Action:
+
+Update your application's configuration
+
+2017-05-17 17:00:53.453  INFO 9272 --- [main] com.sibat.OriginDemoApplication          : Starting OriginDemoApplication on canno with PID 9272 (started by tgw61 in I:\git_repository\智慧公安公交地铁防控\traffic_monitoring)
+2017-05-17 17:00:53.456  INFO 9272 --- [main] com.sibat.OriginDemoApplication          : The following profiles are active: dev
+2017-05-17 17:00:53.503  INFO 9272 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@17b0699: startup date [Wed May 17 17:00:53 CST 2017]; root of context hierarchy
+2017-05-17 17:00:55.047  INFO 9272 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8998 (http)
+2017-05-17 17:00:55.056  INFO 9272 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-05-17 17:00:55.057  INFO 9272 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.14
+2017-05-17 17:00:55.173  INFO 9272 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-05-17 17:00:55.174  INFO 9272 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1671 ms
+2017-05-17 17:00:55.371  INFO 9272 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-05-17 17:00:55.375  INFO 9272 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-05-17 17:00:55.375  INFO 9272 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-05-17 17:00:55.376  INFO 9272 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-05-17 17:00:55.376  INFO 9272 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-05-17 17:00:55.376  INFO 9272 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'simpleCORSFilter' to: [/*]
+2017-05-17 17:00:55.426 ERROR 9272 --- [main] o.s.b.b.PropertiesConfigurationFactory   : Properties configuration failed validation
+2017-05-17 17:00:55.426 ERROR 9272 --- [main] o.s.b.b.PropertiesConfigurationFactory   : Field error in object 'spring.datasource' on field 'type': rejected value [com.alibaba.druid.pool.DruidDataSource]; codes [typeMismatch.spring.datasource.type,typeMismatch.type,typeMismatch.java.lang.Class,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.datasource.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]]
+2017-05-17 17:00:55.427  WARN 9272 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Generic.class]: Unsatisfied dependency expressed through method 'dataSource' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties': Could not bind properties to DataSourceProperties (prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true, ignoreNestedProperties=false); nested exception is org.springframework.validation.BindException: org.springframework.boot.bind.RelaxedDataBinder$RelaxedBeanPropertyBindingResult: 1 errors
+Field error in object 'spring.datasource' on field 'type': rejected value [com.alibaba.druid.pool.DruidDataSource]; codes [typeMismatch.spring.datasource.type,typeMismatch.type,typeMismatch.java.lang.Class,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.datasource.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]]
+2017-05-17 17:00:55.429  INFO 9272 --- [main] o.apache.catalina.core.StandardService   : Stopping service Tomcat
+2017-05-17 17:00:55.437  WARN 9272 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:164)
+ com.mysql.jdbc.NonRegisteringDriver$1.run(NonRegisteringDriver.java:93)
+2017-05-17 17:00:55.443  INFO 9272 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2017-05-17 17:00:55.446 ERROR 9272 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Binding to target org.springframework.boot.autoconfigure.jdbc.DataSourceProperties@103d448 failed:
+
+    Property: spring.datasource.type
+    Value: com.alibaba.druid.pool.DruidDataSource
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]
+
+
+Action:
+
+Update your application's configuration
+
+2017-05-17 17:02:27.980  INFO 4432 --- [main] com.sibat.OriginDemoApplication          : Starting OriginDemoApplication on canno with PID 4432 (started by tgw61 in I:\git_repository\智慧公安公交地铁防控\traffic_monitoring)
+2017-05-17 17:02:27.982  INFO 4432 --- [main] com.sibat.OriginDemoApplication          : The following profiles are active: dev
+2017-05-17 17:02:28.023  INFO 4432 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1010382: startup date [Wed May 17 17:02:28 CST 2017]; root of context hierarchy
+2017-05-17 17:02:29.271  INFO 4432 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8998 (http)
+2017-05-17 17:02:29.287  INFO 4432 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-05-17 17:02:29.288  INFO 4432 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.14
+2017-05-17 17:02:29.449  INFO 4432 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-05-17 17:02:29.450  INFO 4432 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1427 ms
+2017-05-17 17:02:29.660  INFO 4432 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-05-17 17:02:29.664  INFO 4432 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-05-17 17:02:29.664  INFO 4432 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-05-17 17:02:29.664  INFO 4432 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-05-17 17:02:29.664  INFO 4432 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-05-17 17:02:29.665  INFO 4432 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'simpleCORSFilter' to: [/*]
+2017-05-17 17:02:29.722 ERROR 4432 --- [main] o.s.b.b.PropertiesConfigurationFactory   : Properties configuration failed validation
+2017-05-17 17:02:29.723 ERROR 4432 --- [main] o.s.b.b.PropertiesConfigurationFactory   : Field error in object 'spring.datasource' on field 'type': rejected value [com.alibaba.druid.pool.DruidDataSource]; codes [typeMismatch.spring.datasource.type,typeMismatch.type,typeMismatch.java.lang.Class,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.datasource.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]]
+2017-05-17 17:02:29.724  WARN 4432 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Generic.class]: Unsatisfied dependency expressed through method 'dataSource' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties': Could not bind properties to DataSourceProperties (prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true, ignoreNestedProperties=false); nested exception is org.springframework.validation.BindException: org.springframework.boot.bind.RelaxedDataBinder$RelaxedBeanPropertyBindingResult: 1 errors
+Field error in object 'spring.datasource' on field 'type': rejected value [com.alibaba.druid.pool.DruidDataSource]; codes [typeMismatch.spring.datasource.type,typeMismatch.type,typeMismatch.java.lang.Class,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [spring.datasource.type,type]; arguments []; default message [type]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]]
+2017-05-17 17:02:29.726  INFO 4432 --- [main] o.apache.catalina.core.StandardService   : Stopping service Tomcat
+2017-05-17 17:02:29.737  WARN 4432 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:164)
+ com.mysql.jdbc.NonRegisteringDriver$1.run(NonRegisteringDriver.java:93)
+2017-05-17 17:02:29.744  INFO 4432 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2017-05-17 17:02:29.747 ERROR 4432 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Binding to target org.springframework.boot.autoconfigure.jdbc.DataSourceProperties@19f4597 failed:
+
+    Property: spring.datasource.type
+    Value: com.alibaba.druid.pool.DruidDataSource
+    Reason: Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Class' for property 'type'; nested exception is java.lang.IllegalArgumentException: Cannot find class [com.alibaba.druid.pool.DruidDataSource]
+
+
+Action:
+
+Update your application's configuration
+
+2017-05-17 17:03:47.146  INFO 9264 --- [main] com.sibat.OriginDemoApplication          : Starting OriginDemoApplication on canno with PID 9264 (started by tgw61 in I:\git_repository\智慧公安公交地铁防控\traffic_monitoring)
+2017-05-17 17:03:47.148  INFO 9264 --- [main] com.sibat.OriginDemoApplication          : The following profiles are active: dev
+2017-05-17 17:03:47.196  INFO 9264 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1e47833: startup date [Wed May 17 17:03:47 CST 2017]; root of context hierarchy
+2017-05-17 17:03:48.623  INFO 9264 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8998 (http)
+2017-05-17 17:03:48.631  INFO 9264 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-05-17 17:03:48.632  INFO 9264 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.14
+2017-05-17 17:03:48.782  INFO 9264 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-05-17 17:03:48.783  INFO 9264 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1587 ms
+2017-05-17 17:03:48.948  INFO 9264 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-05-17 17:03:48.951  INFO 9264 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-05-17 17:03:48.952  INFO 9264 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-05-17 17:03:48.952  INFO 9264 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-05-17 17:03:48.952  INFO 9264 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-05-17 17:03:48.952  INFO 9264 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'simpleCORSFilter' to: [/*]
+2017-05-17 17:03:49.180  INFO 9264 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2017-05-17 17:03:49.311  INFO 9264 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:03:49.326  INFO 9264 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-05-17 17:03:49.406  INFO 9264 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-05-17 17:03:49.407  INFO 9264 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-05-17 17:03:49.409  INFO 9264 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-05-17 17:03:49.459  INFO 9264 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-05-17 17:03:49.588  INFO 9264 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2017-05-17 17:03:49.816  INFO 9264 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2017-05-17 17:03:49.818  INFO 9264 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@15b9d4a
+2017-05-17 17:03:50.013  WARN 9264 --- [main] org.hibernate.orm.deprecation            : HHH90000014: Found use of deprecated [org.hibernate.id.SequenceGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2017-05-17 17:03:50.296  INFO 9264 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2017-05-17 17:03:50.397  INFO 9264 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:03:50.954  INFO 9264 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1e47833: startup date [Wed May 17 17:03:47 CST 2017]; root of context hierarchy
+2017-05-17 17:03:51.036  INFO 9264 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/event/metro/traffic_congestion],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public com.sibat.util.Response com.sibat.controller.Controller.count(java.lang.String)
+2017-05-17 17:03:51.039  INFO 9264 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-05-17 17:03:51.040  INFO 9264 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-05-17 17:03:51.074  INFO 9264 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:03:51.075  INFO 9264 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:03:51.121  INFO 9264 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:03:51.481  INFO 9264 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-05-17 17:03:51.489  INFO 9264 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2017-05-17 17:03:51.562  INFO 9264 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2017-05-17 17:03:51.568  INFO 9264 --- [main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2017-05-17 17:03:51.612  INFO 9264 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8998 (http)
+2017-05-17 17:03:51.615  INFO 9264 --- [main] com.sibat.OriginDemoApplication          : Started OriginDemoApplication in 4.765 seconds (JVM running for 5.249)
+2017-05-17 17:04:00.017  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:04:00.267  WARN 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Find out more mango instances, it is recommended to use only one
+2017-05-17 17:04:00.269  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:04:00.304  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 383
+2017-05-17 17:04:00.305  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:04:00.305  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:04:00.309  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:04
+2017-05-17 17:05:00.002  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:05:00.287  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:05:00.303  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 383
+2017-05-17 17:05:00.303  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:05:00.304  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:05:00.304  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:05
+2017-05-17 17:06:00.002  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:06:00.023  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:06:00.042  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 383
+2017-05-17 17:06:00.043  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:06:00.043  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:06:00.043  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:06
+2017-05-17 17:07:00.002  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:07:00.017  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:07:00.031  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 383
+2017-05-17 17:07:00.032  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:07:00.032  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:07:00.032  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:07
+2017-05-17 17:08:00.002  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:08:00.231  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:08:00.245  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 383
+2017-05-17 17:08:00.245  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:08:00.245  INFO 9264 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:08:00.246  INFO 9264 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:08
+2017-05-17 17:08:36.523  INFO 17076 --- [main] com.sibat.OriginDemoApplication          : Starting OriginDemoApplication on canno with PID 17076 (started by tgw61 in I:\git_repository\智慧公安公交地铁防控\traffic_monitoring)
+2017-05-17 17:08:36.533  INFO 17076 --- [main] com.sibat.OriginDemoApplication          : The following profiles are active: dev
+2017-05-17 17:08:36.587  INFO 17076 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1704591: startup date [Wed May 17 17:08:36 CST 2017]; root of context hierarchy
+2017-05-17 17:08:38.314  INFO 17076 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8998 (http)
+2017-05-17 17:08:38.322  INFO 17076 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-05-17 17:08:38.323  INFO 17076 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.14
+2017-05-17 17:08:38.473  INFO 17076 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-05-17 17:08:38.474  INFO 17076 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1887 ms
+2017-05-17 17:08:38.639  INFO 17076 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-05-17 17:08:38.643  INFO 17076 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-05-17 17:08:38.644  INFO 17076 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-05-17 17:08:38.644  INFO 17076 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-05-17 17:08:38.644  INFO 17076 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-05-17 17:08:38.644  INFO 17076 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'simpleCORSFilter' to: [/*]
+2017-05-17 17:08:38.869  INFO 17076 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2017-05-17 17:08:38.997  INFO 17076 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:08:39.014  INFO 17076 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-05-17 17:08:39.090  INFO 17076 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-05-17 17:08:39.092  INFO 17076 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-05-17 17:08:39.093  INFO 17076 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-05-17 17:08:39.144  INFO 17076 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-05-17 17:08:39.277  INFO 17076 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2017-05-17 17:08:39.493  INFO 17076 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2017-05-17 17:08:39.494  INFO 17076 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@1c6da03
+2017-05-17 17:08:39.639  WARN 17076 --- [main] org.hibernate.orm.deprecation            : HHH90000014: Found use of deprecated [org.hibernate.id.SequenceGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2017-05-17 17:08:39.962  INFO 17076 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2017-05-17 17:08:40.076  INFO 17076 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:08:40.651  INFO 17076 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1704591: startup date [Wed May 17 17:08:36 CST 2017]; root of context hierarchy
+2017-05-17 17:08:40.731  INFO 17076 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/event/metro/traffic_congestion],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public com.sibat.util.Response com.sibat.controller.Controller.count(java.lang.String)
+2017-05-17 17:08:40.733  INFO 17076 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-05-17 17:08:40.734  INFO 17076 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-05-17 17:08:40.762  INFO 17076 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:08:40.763  INFO 17076 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:08:40.812  INFO 17076 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:08:41.164  INFO 17076 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-05-17 17:08:41.172  INFO 17076 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2017-05-17 17:08:41.177  INFO 17076 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2017-05-17 17:08:41.183  INFO 17076 --- [main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2017-05-17 17:08:41.297  INFO 17076 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8998 (http)
+2017-05-17 17:08:41.302  INFO 17076 --- [main] com.sibat.OriginDemoApplication          : Started OriginDemoApplication in 5.125 seconds (JVM running for 5.633)
+2017-05-17 17:09:00.019  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:09:00.267  WARN 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Find out more mango instances, it is recommended to use only one
+2017-05-17 17:09:00.268  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:09:00.293  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:09:00.306  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:09:00.310  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:09
+2017-05-17 17:09:00.346 ERROR 17076 --- [pool-2-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+
+org.jfaster.mango.jdbc.exception.DataIntegrityViolationException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:09, 0).; caused by: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:09, 0).
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:74)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:09, 0).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+
+2017-05-17 17:10:00.001  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:10:00.023  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:10:00.042  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:10:00.042  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:10:00.043  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:10
+2017-05-17 17:10:00.062 ERROR 17076 --- [pool-2-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+
+org.jfaster.mango.jdbc.exception.DataIntegrityViolationException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:10, 0).; caused by: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:10, 0).
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:74)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:10, 0).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+
+2017-05-17 17:11:00.001  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:11:10.021  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:11:10.039  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:11:10.040  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:11:10.040  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:11
+2017-05-17 17:11:10.061 ERROR 17076 --- [pool-2-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+
+org.jfaster.mango.jdbc.exception.DataIntegrityViolationException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:11, 0).; caused by: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:11, 0).
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:74)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: null value in column "id" violates not-null constraint
+  详细：Failing row contains (null, 2017-05-17 17:11, 0).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+
+2017-05-17 17:12:00.002  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:12:00.019  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:12:00.036  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:12:00.036  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:12:00.037  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:12
+2017-05-17 17:12:00.059 ERROR 17076 --- [pool-2-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(1) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(1) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(1) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+
+2017-05-17 17:13:00.002  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:13:00.395  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:13:00.414  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:13:00.414  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:13:00.415  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:13
+2017-05-17 17:13:00.435 ERROR 17076 --- [pool-2-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(2) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(2) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(2) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+
+2017-05-17 17:14:00.002  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:14:00.026  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:14:00.049  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:14:00.049  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:14:00.050  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:14
+2017-05-17 17:14:00.070 ERROR 17076 --- [pool-2-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(3) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(3) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(3) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+
+2017-05-17 17:15:00.001  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:15:00.231  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:15:00.247  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:15:00.247  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:15:00.248  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:15
+2017-05-17 17:15:00.266 ERROR 17076 --- [pool-2-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(4) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(4) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(4) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+
+2017-05-17 17:16:00.002  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:16:00.028  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:16:00.043  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:16:00.044  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:16:00.044  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:16
+2017-05-17 17:16:00.066 ERROR 17076 --- [pool-2-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+
+org.jfaster.mango.jdbc.exception.DuplicateKeyException: SQL [insert into traffic_congestion(time,traffic_congestion_index) values(?,?)]; ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(5) already exists.; caused by: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(5) already exists.
+	at org.jfaster.mango.jdbc.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:71)
+	at org.jfaster.mango.jdbc.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:37)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:120)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:79)
+	at org.jfaster.mango.operator.UpdateOperator.executeDb(UpdateOperator.java:113)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:100)
+	at org.jfaster.mango.operator.UpdateOperator.execute(UpdateOperator.java:81)
+	at org.jfaster.mango.operator.Mango$MangoInvocationHandler.handleInvocation(Mango.java:327)
+	at org.jfaster.mango.util.reflect.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:46)
+	at com.sun.proxy.$Proxy90.addObj(Unknown Source)
+	at com.sibat.service.ScheduleService.getTrafficCongestionIndex(ScheduleService.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:65)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:81)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "traffic_congestion_pkey"
+  详细：Key (id)=(5) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at org.jfaster.mango.jdbc.JdbcTemplate.update(JdbcTemplate.java:101)
+	... 22 common frames omitted
+
+2017-05-17 17:17:00.000  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:17:00.091  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:17:00.110  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:17:00.110  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:17:00.110  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:17
+2017-05-17 17:18:00.002  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:18:00.017  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:18:00.033  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:18:00.033  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:18:00.034  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:18
+2017-05-17 17:19:00.002  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:19:00.058  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:19:00.076  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:19:00.077  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:19:00.077  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:19
+2017-05-17 17:20:00.000  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:20:00.031  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:20:00.047  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:20:00.047  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:20:00.048  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:20
+2017-05-17 17:21:00.002  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:21:00.019  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:21:00.036  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:21:00.037  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:21:00.037  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:21
+2017-05-17 17:22:00.001  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:22:00.288  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:22:00.308  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:22:00.308  INFO 17076 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:22:00.309  INFO 17076 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:22
+2017-05-17 17:27:46.328  INFO 680 --- [main] com.sibat.OriginDemoApplication          : Starting OriginDemoApplication on canno with PID 680 (started by tgw61 in I:\git_repository\智慧公安公交地铁防控\traffic_monitoring)
+2017-05-17 17:27:46.331  INFO 680 --- [main] com.sibat.OriginDemoApplication          : The following profiles are active: dev
+2017-05-17 17:27:46.374  INFO 680 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@528192: startup date [Wed May 17 17:27:46 CST 2017]; root of context hierarchy
+2017-05-17 17:27:47.646  INFO 680 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8998 (http)
+2017-05-17 17:27:47.654  INFO 680 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-05-17 17:27:47.655  INFO 680 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.14
+2017-05-17 17:27:47.762  INFO 680 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-05-17 17:27:47.763  INFO 680 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1389 ms
+2017-05-17 17:27:47.902  INFO 680 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-05-17 17:27:47.905  INFO 680 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-05-17 17:27:47.905  INFO 680 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-05-17 17:27:47.906  INFO 680 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-05-17 17:27:47.906  INFO 680 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-05-17 17:27:47.906  INFO 680 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'simpleCORSFilter' to: [/*]
+2017-05-17 17:27:48.195  INFO 680 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2017-05-17 17:27:48.309  INFO 680 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:27:48.324  INFO 680 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-05-17 17:27:48.393  INFO 680 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-05-17 17:27:48.394  INFO 680 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-05-17 17:27:48.396  INFO 680 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-05-17 17:27:48.433  INFO 680 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-05-17 17:27:48.544  INFO 680 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2017-05-17 17:27:48.759  INFO 680 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2017-05-17 17:27:48.760  INFO 680 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@518813
+2017-05-17 17:27:48.879  WARN 680 --- [main] org.hibernate.orm.deprecation            : HHH90000014: Found use of deprecated [org.hibernate.id.SequenceGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2017-05-17 17:27:49.175  INFO 680 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2017-05-17 17:27:49.305  INFO 680 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:27:49.734  INFO 680 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@528192: startup date [Wed May 17 17:27:46 CST 2017]; root of context hierarchy
+2017-05-17 17:27:49.802  INFO 680 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/traffic_congestion],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public com.sibat.util.Response com.sibat.controller.Controller.count(java.lang.String)
+2017-05-17 17:27:49.805  INFO 680 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-05-17 17:27:49.805  INFO 680 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-05-17 17:27:49.826  INFO 680 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:27:49.826  INFO 680 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:27:49.860  INFO 680 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:27:50.062  INFO 680 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-05-17 17:27:50.063  INFO 680 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2017-05-17 17:27:50.067  INFO 680 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2017-05-17 17:27:50.072  INFO 680 --- [main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2017-05-17 17:27:50.116  INFO 680 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8998 (http)
+2017-05-17 17:27:50.119  INFO 680 --- [main] com.sibat.OriginDemoApplication          : Started OriginDemoApplication in 4.075 seconds (JVM running for 4.565)
+2017-05-17 17:28:00.014  INFO 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:28:00.248  WARN 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Find out more mango instances, it is recommended to use only one
+2017-05-17 17:28:00.249  INFO 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:28:00.273  INFO 680 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:28:00.273  INFO 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:28:00.277  INFO 680 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:28
+2017-05-17 17:29:00.001  INFO 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:29:00.179  INFO 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:29:00.197  INFO 680 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:29:00.197  INFO 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:29:00.198  INFO 680 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:29
+2017-05-17 17:30:00.002  INFO 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:30:00.019  INFO 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:30:00.035  INFO 680 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.0
+2017-05-17 17:30:00.036  INFO 680 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:30:00.036  INFO 680 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:30
+2017-05-17 17:31:14.269  INFO 1152 --- [main] com.sibat.OriginDemoApplication          : Starting OriginDemoApplication on canno with PID 1152 (started by tgw61 in I:\git_repository\智慧公安公交地铁防控\traffic_monitoring)
+2017-05-17 17:31:14.271  INFO 1152 --- [main] com.sibat.OriginDemoApplication          : The following profiles are active: dev
+2017-05-17 17:31:14.320  INFO 1152 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1e47833: startup date [Wed May 17 17:31:14 CST 2017]; root of context hierarchy
+2017-05-17 17:31:15.747  INFO 1152 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8998 (http)
+2017-05-17 17:31:15.755  INFO 1152 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-05-17 17:31:15.756  INFO 1152 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.14
+2017-05-17 17:31:15.904  INFO 1152 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-05-17 17:31:15.904  INFO 1152 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1584 ms
+2017-05-17 17:31:16.070  INFO 1152 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-05-17 17:31:16.075  INFO 1152 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-05-17 17:31:16.075  INFO 1152 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-05-17 17:31:16.075  INFO 1152 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-05-17 17:31:16.075  INFO 1152 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-05-17 17:31:16.076  INFO 1152 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'simpleCORSFilter' to: [/*]
+2017-05-17 17:31:16.298  INFO 1152 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2017-05-17 17:31:16.419  INFO 1152 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:31:16.434  INFO 1152 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-05-17 17:31:16.513  INFO 1152 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-05-17 17:31:16.514  INFO 1152 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-05-17 17:31:16.515  INFO 1152 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-05-17 17:31:16.565  INFO 1152 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-05-17 17:31:16.701  INFO 1152 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2017-05-17 17:31:16.919  INFO 1152 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2017-05-17 17:31:16.920  INFO 1152 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@1a9b687
+2017-05-17 17:31:17.067  WARN 1152 --- [main] org.hibernate.orm.deprecation            : HHH90000014: Found use of deprecated [org.hibernate.id.SequenceGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2017-05-17 17:31:17.357  INFO 1152 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2017-05-17 17:31:17.460  INFO 1152 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:31:18.027  INFO 1152 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1e47833: startup date [Wed May 17 17:31:14 CST 2017]; root of context hierarchy
+2017-05-17 17:31:18.108  INFO 1152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/traffic_congestion],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public com.sibat.util.Response com.sibat.controller.Controller.count(java.lang.String)
+2017-05-17 17:31:18.111  INFO 1152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-05-17 17:31:18.111  INFO 1152 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-05-17 17:31:18.166  INFO 1152 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:31:18.167  INFO 1152 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:31:18.279  INFO 1152 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:31:18.862  INFO 1152 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-05-17 17:31:18.871  INFO 1152 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2017-05-17 17:31:18.876  INFO 1152 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2017-05-17 17:31:18.884  INFO 1152 --- [main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2017-05-17 17:31:18.960  INFO 1152 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8998 (http)
+2017-05-17 17:31:18.964  INFO 1152 --- [main] com.sibat.OriginDemoApplication          : Started OriginDemoApplication in 4.998 seconds (JVM running for 5.58)
+2017-05-17 17:32:00.016  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:32:10.293  WARN 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Find out more mango instances, it is recommended to use only one
+2017-05-17 17:32:10.294  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:32:10.318  INFO 1152 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.2495447706
+2017-05-17 17:32:10.318  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:32:10.322  INFO 1152 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:32
+2017-05-17 17:33:00.002  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:33:00.023  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:33:00.039  INFO 1152 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.2504187257
+2017-05-17 17:33:00.039  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:33:00.040  INFO 1152 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:33
+2017-05-17 17:33:54.077  INFO 16672 --- [main] com.sibat.OriginDemoApplicationTests     : Starting OriginDemoApplicationTests on canno with PID 16672 (started by tgw61 in I:\git_repository\�ǻ۹���������������\traffic_monitoring)
+2017-05-17 17:33:54.077  INFO 16672 --- [main] com.sibat.OriginDemoApplicationTests     : The following profiles are active: dev
+2017-05-17 17:33:54.106  INFO 16672 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1e8c3cb: startup date [Wed May 17 17:33:54 CST 2017]; root of context hierarchy
+2017-05-17 17:33:55.201  INFO 16672 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2017-05-17 17:33:55.307  INFO 16672 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:33:55.322  INFO 16672 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-05-17 17:33:55.421  INFO 16672 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-05-17 17:33:55.423  INFO 16672 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-05-17 17:33:55.424  INFO 16672 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-05-17 17:33:55.465  INFO 16672 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-05-17 17:33:55.569  INFO 16672 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2017-05-17 17:33:55.784  INFO 16672 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+2017-05-17 17:33:55.786  INFO 16672 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@cc9385
+2017-05-17 17:33:56.017  WARN 16672 --- [main] org.hibernate.orm.deprecation            : HHH90000014: Found use of deprecated [org.hibernate.id.SequenceGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2017-05-17 17:33:56.251  INFO 16672 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2017-05-17 17:33:56.342  INFO 16672 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:33:56.945  INFO 16672 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1e8c3cb: startup date [Wed May 17 17:33:54 CST 2017]; root of context hierarchy
+2017-05-17 17:33:57.006  INFO 16672 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/api/traffic_congestion],methods=[GET],produces=[application/json;charset=UTF-8]}" onto public com.sibat.util.Response com.sibat.controller.Controller.count(java.lang.String)
+2017-05-17 17:33:57.008  INFO 16672 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-05-17 17:33:57.009  INFO 16672 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-05-17 17:33:57.034  INFO 16672 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:33:57.034  INFO 16672 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:33:57.065  INFO 16672 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-05-17 17:33:57.292  INFO 16672 --- [main] com.sibat.OriginDemoApplicationTests     : Started OriginDemoApplicationTests in 3.419 seconds (JVM running for 4.06)
+2017-05-17 17:33:57.330  INFO 16672 --- [Thread-2] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@1e8c3cb: startup date [Wed May 17 17:33:54 CST 2017]; root of context hierarchy
+2017-05-17 17:33:57.331  INFO 16672 --- [Thread-2] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2017-05-17 17:33:57.334  INFO 16672 --- [Thread-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2017-05-17 17:34:00.002  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:34:00.026  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:34:00.045  INFO 1152 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.2564296191
+2017-05-17 17:34:00.045  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:34:00.046  INFO 1152 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:34
+2017-05-17 17:35:00.001  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for SubwayDao.findByTime(String)
+2017-05-17 17:35:00.198  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for FullFlowDao.findAll()
+2017-05-17 17:35:00.232  INFO 1152 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : result---0.2576998868
+2017-05-17 17:35:00.232  INFO 1152 --- [pool-2-thread-1] org.jfaster.mango.operator.Mango         : Initializing operator for TrafficCongestionDao.addObj(String, String)
+2017-05-17 17:35:00.233  INFO 1152 --- [pool-2-thread-1] com.sibat.service.ScheduleService        : 2017-05-17 17:35
