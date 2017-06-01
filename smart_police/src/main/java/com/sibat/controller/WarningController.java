@@ -295,23 +295,78 @@ public class WarningController {
 
     /**
      * 警情类别
-     * 本月两枪，扒窃，盗窃，诈骗，故意伤害，遗失，求助，其他，故意杀人，抢劫，抢夺，重复报警数量
+     * 返回本月两枪，扒窃，盗窃，诈骗，故意伤害，遗失，求助，其他，故意杀人，抢劫，抢夺，重复报警数量
      *
+     * @param startTime
+     * @param endTime
      * @return
+     * @throws Exception
      */
     @RequestMapping(value = "classes", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response warning_classes() {
-        return new Response("404", "failed");
+    public Response warning_classes(String startTime, String endTime) throws Exception {
+
+        JSONObject result = new JSONObject();
+
+        List<Object[]> objects = subwayEventDao.countByType(startTime + " 00:00:00.000",
+                endTime + " 23:59:59.000");
+        List<WarningTypeCount> warningTypeCountList = new ArrayList<>();
+
+        if (objects != null && !objects.isEmpty())
+            warningTypeCountList = ConvertUtil.castEntity(objects, WarningTypeCount.class);
+        else
+            return new Response("404", "failed");
+
+        if (warningTypeCountList != null && !warningTypeCountList.isEmpty()) {
+            for (WarningTypeCount w : warningTypeCountList) {
+                if (w.getType() != null || w.getType() != "") {
+                    result.put(w.getType(), w.getType_count());
+                }
+            }
+
+            return new Response("200", result);
+        } else {
+            return new Response("404", "failed");
+        }
+
     }
 
     /**
      * 派出所警情
-     * 本月派出所ID,警情数
+     * 返回本月派出所ID,警情数
      *
+     * @param startTime
+     * @param endTime
      * @return
      */
     @RequestMapping(value = "from_local_police_station", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response warning_from_local_police_station() {
-        return new Response("404", "failed");
+    public Response warning_from_local_police_station(String startTime, String endTime) throws Exception {
+
+        JSONObject result = new JSONObject();
+
+        List<Object[]> objects = subwayEventDao.countByPolice(startTime + " 00:00:00.000",
+                endTime + " 23:59:59.000");
+
+        List<PoliceWarningCount> policeWarningCountList = new ArrayList<>();
+
+        if (objects != null && !objects.isEmpty())
+            policeWarningCountList = ConvertUtil.castEntity(objects, PoliceWarningCount.class);
+        else
+            return new Response("404", "failed");
+
+        if (policeWarningCountList != null && !policeWarningCountList.isEmpty()) {
+            for (PoliceWarningCount p: policeWarningCountList
+                    ) {
+                if (p.getPolice() != null || p.getPolice() != "") {
+                    result.put(p.getPolice_id(), p.getEvent_count_numbers());
+                }
+            }
+
+            return new Response("200", result);
+        }
+        else {
+            return new Response("404", "failed");
+        }
+
+
     }
 }
