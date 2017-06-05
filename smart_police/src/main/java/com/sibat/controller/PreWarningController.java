@@ -83,33 +83,45 @@ public class PreWarningController {
             Timestamp startTimestamp = new Timestamp(format.parse(start).getTime());
             Timestamp endTimestamp = new Timestamp(format.parse(end).getTime());
             List<PersonPath> personPaths = personPathDao.selectByTime(startTimestamp, endTimestamp);
-
+            ExecutorService executorService = Executors.newFixedThreadPool(10);
             if (ConvertUtil.isNotNull(personPaths)) {
                 for (PersonPath obj : personPaths) {
-                    dealSiteMap(site, obj);
-                    dealNameMap(name, obj);
-                    dealTimeMap(time, obj);
-                    if (obj.getS_ID_NUMBER() != null) {
-                        Suspect suspect = suspectDao.findByID(obj.getS_ID_NUMBER());
-                        dealZdryState(zdryState, suspect);
-                        dealNativePlace(nativePlace, obj);
-                    }
+                    executorService.execute(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    dealMap(obj, site, name, time, zdryState, nativePlace);
+                                }
+                            }
+                    );
                 }
+                executorService.shutdown();
+                try {
+                    executorService.awaitTermination(30, TimeUnit.SECONDS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                result.put("site", sortMapDesc(site));
+                result.put("name", sortMapDesc(name));
+                result.put("time", time);
+                result.put("zdryState", zdryState);
+                result.put("nativePlace", sortMapDesc(nativePlace));
             }
-            //排序
-            site = sortMapDesc(site);
-            name = sortMapDesc(name);
-            nativePlace = sortMapDesc(nativePlace);
-
-            result.put("site", site);
-            result.put("name", name);
-            result.put("time", time);
-            result.put("zdryState", zdryState);
-            result.put("nativePlace", nativePlace);
             return new Response("200", result);
         } catch (ParseException e) {
             e.printStackTrace();
             return new Response("500", "sorry for errors!");
+        }
+    }
+
+    private void dealMap(PersonPath obj, Map<String, Integer> site, Map<String, Integer> name, Map<String, Integer> time, Map<String, Integer> zdryState, Map<String, Integer> nativePlace) {
+        dealSiteMap(site, obj);
+        dealNameMap(name, obj);
+        dealTimeMap(time, obj);
+        if (obj.getS_ID_NUMBER() != null) {
+            Suspect suspect = suspectDao.findByID(obj.getS_ID_NUMBER());
+            dealZdryState(zdryState, suspect);
+            dealNativePlace(nativePlace, obj);
         }
     }
 
