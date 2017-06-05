@@ -33,15 +33,18 @@ public interface SubwayEventDao extends JpaRepository<SubwayEvent, Integer> {
     @Query(value = "select police from subway_event where police_id=?1 limit 1", nativeQuery = true)
     String findPoliceByPoliceId(@Param("policeId") String piliceId);
 
-    @Query (value = "select type, count(type) as type_count from subway_event " +
-            "where event_time " +
-            "between ?1 and ?2 " +
-            "group by type", nativeQuery = true)
-    List<Object[]> countByType(String month_start, String month_end);
+    @Query(value = "select police_id,count(*) from subway_event where time between ?1 and ?2 group by police_id;", nativeQuery = true)
+    List<Object[]> countByPolice(String start, String end);
 
-    @Query(value = "select police, police_id, count(police) as event_count_numbers from subway_event " +
-            "where subway_event.event_time " +
-            "between ?1 and ?2 " +
-            "group by subway_event.police", nativeQuery = true)
-    List<Object[]> countByPolice(String month_start, String month_end);
+    @Query(value = "select line_id,count(*) from subway_event where time between ?1 and ?2 group by line_id;", nativeQuery = true)
+    List<Object[]> countByLineId(String start, String end);
+
+    @Query(value = "select station_name,count(*) from subway_event where time between ?1 and ?2 group by station_name;", nativeQuery = true)
+    List<Object[]> countByStationName(String start, String end);
+
+    @Query(value = "select type,count(*) from subway_event where time between ?1 and ?2 group by type;", nativeQuery = true)
+    List<Object[]> countByType(String start, String end);
+
+    @Query(value = "select category,count(*) from subway_event where time between ?1 and ?2 group by category;", nativeQuery = true)
+    List<Object[]> countByCategory(String start, String end);
 }

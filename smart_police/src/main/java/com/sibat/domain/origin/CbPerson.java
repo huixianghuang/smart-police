@@ -1,31 +1,39 @@
 package com.sibat.domain.origin;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 /**
  * Created by tgw61 on 2017/5/3.
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
-@Table(name = "cb_person")
+@Table(name = "t_cb_person")
 public class CbPerson {
-    private String CBBH;
-    private String AJS;
-    private String RS;
-    private String NAME;
-    private String AY;
-    private String YSY;
-    private String SADW;
-    private String IS_SB;
-    private String IS_PB;
-    private String AFDD;
-    private String SB_TIME;
-    private String PB_TIME;
-    private String CREATE_TIME;
-    private String DEPT_CODE;
+    private String cbbh;
+    private String ajs;
+    private String rs;
+    private String name;
+    private String ay;
+    private String ysy;
+    private String sadw;
+    private String isSb;
+    private String isPb;
+    private String afdd;
+    private Timestamp sbTime;
+    private Timestamp pbTime;
+    private Timestamp createTime;
+    private String deptCode;
     @Id
-    private String ID;
-    private String IS_YJ;
-    private String YSY_CODE;
+    private int id;
+    private int isYj;
+    private String ysyCode;
 }

@@ -21,6 +21,7 @@ public class DateUtil {
     private static String PATTERN_MM_dd = "MM-dd";
     private static String PATTERN_yyyyMMddHHmmss = "yyyyMMddHHmmss";
     private static String PATTERN_yyyy_MM_dd_HHmmss = "yyyy-MM-dd HH:mm:ss";
+
     private static String PATTERN_HHmmss = "HH:mm:ss";
     private static String PATTERN_yyyy_MM_dd_HHmm = "yyyy-MM-dd HH:mm";
     private static String PATTERN_yyyyMMdd = "yyyyMMdd";
@@ -37,6 +38,20 @@ public class DateUtil {
             e.printStackTrace();
         }
         c1.add(Calendar.MINUTE, -1);
+        return sdf.format(c1.getTime());
+    }
+
+
+    public static String getNext35Min(String time) {
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyy_MM_dd_HHmm);
+        Calendar c1 = Calendar.getInstance();
+        try {
+            c1.setTime(sdf.parse(time));
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        c1.add(Calendar.MINUTE, 35);
         return sdf.format(c1.getTime());
     }
     /**

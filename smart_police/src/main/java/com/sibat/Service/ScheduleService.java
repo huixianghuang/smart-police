@@ -49,7 +49,6 @@ public class ScheduleService {
         List<EventCategoryCount> ecc = new ArrayList<>();
         try {
             String date = DateUtil.getCurrentMonth();
-            //String date = "2017/04";
             List<LikeMap> lms = null;
             List<Object[]> array = subwayEventDao.countEventCategory(date);
             if (array != null && !array.isEmpty())
@@ -76,7 +75,6 @@ public class ScheduleService {
     public void saveEventCount() {
         try {
             String date = DateUtil.getCurrentMonth();
-            //String date = "2017/04";
             Integer eventCount = subwayEventDao.countEvent(date);
             if (eventCount != null) {
                 List<EventCount> ecs = eventCountDao.findObjByTime(date);
@@ -123,59 +121,57 @@ public class ScheduleService {
     }
 
 
+    /**
+     * 每日导入地铁警情数据 待修改
+     */
     @Scheduled(cron = "0 26 02 ? * *")
     public void saveSubwayEvent() {
         List<SubwayEvent> seList = new ArrayList<>();
         String currentTime = DateUtil.getCurrentTimePATTERN_yyyy_MM_dd2();
         String lastDay = DateUtil.getLastDayPattern2(currentTime) + "%";
-        //String lastDay = "2017/04/10%";
         List<JqfxJqlrDt> jqfxJqlrDtList = jqfxJqlrDtDao.findByTime(lastDay);
         if (jqfxJqlrDtList != null & !jqfxJqlrDtList.isEmpty()) {
             for (JqfxJqlrDt sw : jqfxJqlrDtList) {
                 String stationId = null, stationName = null, lineId = null, lineName = null, eventId = null,
                         category = null, type = null, content = null, eventTime = null, police = null, policeId = null, time = null;
+                int id = sw.getDT_ID();
                 if (sw.getDDMC() != null) {
-                    stationName = utilService.convertStation(sw.getDDMC().trim());
+                    stationName = utilService.convertStation(sw.getDDMC());
                     stationId = stationDao.findStationIdByStationName(stationName);
                 }
                 if (sw.getXL_ID() != null) {
-                    lineId = sw.getXL_ID().trim();
+                    lineId = sw.getXL_ID();
                 }
                 if (sw.getXL() != null) {
-                    lineName = sw.getXL().trim();
+                    lineName = sw.getXL();
                 }
                 if (sw.getJCJ_ID() != null) {
-                    eventId = sw.getJCJ_ID().trim();
+                    eventId = sw.getJCJ_ID();
                 }
                 if (sw.getJQXZ() != null) {
-                    category = sw.getJQXZ().trim();
+                    category = sw.getJQXZ();
                 }
                 if (sw.getJQLB() != null) {
                     type = sw.getJQLB().trim();
                 }
                 if (sw.getREMARK() != null) {
-                    content = sw.getREMARK().trim();
+                    content = sw.getREMARK();
                 }
                 if (sw.getAF_TIME() != null) {
-                    eventTime = sw.getAF_TIME().trim();
+                    eventTime = sw.getAF_TIME().toString();
                 }
 
                 if (sw.getJJDW_NAME() != null) {
-                    police = sw.getJJDW_NAME().trim();
+                    police = sw.getJJDW_NAME();
                 }
                 if (sw.getJJDW_ID() != null) {
-                    policeId = sw.getJJDW_ID().trim();
+                    policeId = sw.getJJDW_ID();
                 }
 
                 if (sw.getAF_TIME() != null) {
-                    try {
-                        time = sw.getAF_TIME().split(" ")[0];
-                        time = time.split("/")[0] + "/" + time.split("/")[1];
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        logger.info(time);
-                    }
+                    time = sw.getAF_TIME().toString();
                 }
-                seList.add(new SubwayEvent(stationId, stationName, lineId,
+                seList.add(new SubwayEvent(id, stationId, stationName, lineId,
                         lineName, eventId, category,
                         type, content, eventTime, police, policeId, time));
             }

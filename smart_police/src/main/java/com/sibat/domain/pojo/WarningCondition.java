@@ -1,8 +1,11 @@
 package com.sibat.domain.pojo;
 
+import lombok.Data;
+
 /**
  * Created by tgw61 on 2017/4/28.
  */
+@Data
 public class WarningCondition {
     //接警单位
     private String department;

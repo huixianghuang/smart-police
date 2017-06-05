@@ -1,36 +1,41 @@
 package com.sibat.domain.origin;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by tgw61 on 2017/5/3.
  * 嫌疑人处置情况 戒毒人员
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "qj_person")
+@Table(name = "t_qj_person")
 public class QjPerson {
-    private String NAME;
-    private String SEX;
-    private String AGE;
-    private String ID_NUMBER;
-    private String HJ;
-    private String XZZ;
-    private String PHONE;
-    private String CFQK;
-    private String BADW;
-    private String JBR;
-    private String XDLX;
-    private String DEPT_CODE;
-    private String CF_TIME;
+    private String name;
+    private String sex;
+    private String age;
+    private String idNumber;
+    private String hj;
+    private String xzz;
+    private String phone;
+    private String cfqk;
+    private String badw;
+    private String jbr;
+    private String xdlx;
+    private String deptCode;
+    private Timestamp cfTime;
     @Id
-    private String ID;
-    private String CREATE_DATE;
-    private String JBR_CODE;
-    private String XZ;
-    private String JBR_SEC;
-    private String JBR_CODE_SEC;
-
+    private int id;
+    private Timestamp createDate;
+    private String jbrCode;
+    @Column(name = "xz")
+    private String ajxz;
+    private String jbr_sec;
+    private String jbr_code_sec;
 }

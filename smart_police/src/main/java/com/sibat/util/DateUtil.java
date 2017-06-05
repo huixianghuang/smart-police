@@ -30,6 +30,7 @@ public class DateUtil {
     private static String PATTERN_yy_MM_dd_HHmmss2 = "yy/MM/dd HH:mm:ss";
     private static String PATTERN_yyyy_MM_dd2 = "yyyy/MM/dd";
     private static String PATTERN_yyyyMM = "yyyy/MM";
+
     @Test
     public void test() {
 //        List<String> reustl = getSerialDays("2017/02/01", "2017/02/10");
@@ -52,9 +53,14 @@ public class DateUtil {
         return df.format(result / 1000 / 60 / 60.0);
     }
 
+    @Test
+    public void testget(){
+        getSerialDays("2017-01-01","2017-04-12");
+    }
+
     public static List<String> getSerialDays(String start, String end) {
         List<String> result = new ArrayList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyy_MM_dd2);
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_yyyy_MM_dd);
         Calendar calendar1 = Calendar.getInstance();
         Calendar calendar2 = Calendar.getInstance();
         try {
@@ -355,14 +361,7 @@ public class DateUtil {
         return result;
     }
 
-    @Test
-    public void testGetWeek() {
-        try {
-            logger.info(getWeek("2017-03-01"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     /**
      * 获取当周日期 周日到周六
@@ -382,10 +381,35 @@ public class DateUtil {
         Monday = YYYY_MM_dd.format(calendar.getTime());
         calendar.add(Calendar.DATE, 6);
         Sunday = YYYY_MM_dd.format(calendar.getTime());
-
         return Monday + "_" + Sunday;
     }
 
+
+    @Test
+    public void testGetWeek() {
+        try {
+            logger.info(getWeek1to7("2017-05-21"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    public static String getWeek1to7(String time) throws ParseException {
+        SimpleDateFormat YYYY_MM_dd = new SimpleDateFormat(PATTERN_yyyy_MM_dd);
+        String Monday;
+        String Sunday;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(YYYY_MM_dd.parse(time));
+        int now = calendar.get(Calendar.DAY_OF_WEEK);
+        if(now==1){
+            calendar.add(Calendar.DATE, -6);
+        }else{
+            calendar.add(Calendar.DATE, -now+2);
+        }
+        Monday = YYYY_MM_dd.format(calendar.getTime());
+        calendar.add(Calendar.DATE, 6);
+        Sunday = YYYY_MM_dd.format(calendar.getTime());
+        return Monday + "_" + Sunday;
+    }
 
 //    /**
 //     * 4.当日获取当周日期  周四到下周三的日期获得上周四到这周三的日期
@@ -427,14 +451,23 @@ public class DateUtil {
     public static Stack<String> getDays(String time) throws ParseException {
         SimpleDateFormat YYYY_MM_dd = new SimpleDateFormat(PATTERN_yyyy_MM_dd);
         Stack<String> result = new Stack<>();
-        String[] days = getWeek(time).split("_");
+        String[] days = getWeek1to7(time).split("_");
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(YYYY_MM_dd.parse(days[1]));
+        calendar.setTime(YYYY_MM_dd.parse(days[0]));
         for (int i = 0; i < 7; i++) {
             result.add(YYYY_MM_dd.format(calendar.getTime()));
-            calendar.add(Calendar.DATE, -1);
+            calendar.add(Calendar.DATE, 1);
         }
         return result;
+    }
+
+    @Test
+    public void tetst() {
+        try {
+            logger.info(getDays("2017-05-21"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

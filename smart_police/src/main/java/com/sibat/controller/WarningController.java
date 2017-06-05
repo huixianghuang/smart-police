@@ -3,24 +3,33 @@ package com.sibat.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sibat.Service.UtilService;
-import com.sibat.domain.origin.BusWarningDao;
-import com.sibat.domain.origin.JqfxJqlrDtDao;
-import com.sibat.domain.origin.BusWarning;
+import com.sibat.domain.origin.*;
 import com.sibat.domain.other.*;
 import com.sibat.domain.pojo.*;
 import com.sibat.util.ConvertUtil;
 import com.sibat.util.DateUtil;
 import com.sibat.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by tgw61 on 2017/4/28.
@@ -31,20 +40,29 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class WarningController {
     org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(WarningController.class);
     @Autowired
-    JqfxJqlrDtDao jqfxJqlrDtDao;
-    @Autowired
-    BusWarningDao busWarningDao;
-    @Autowired
     SubwayEventDao subwayEventDao;
     @Autowired
     StationDao stationDao;
     @Autowired
     UtilService utilService;
-
+    @Autowired
+    BusEventDao busEventDao;
+    @Autowired
+    PoliceDao policeDao;
+    @Autowired
+    EventCategoryCountDao eventCategoryCountDao;
+    @Autowired
+    EventCountDao eventCountDao;
+    @Autowired
+    LocalPoliceEventDao localPoliceEventDao;
 
     /**
-     * 查询线网所有站点某一天的警情数量
+     * 查询地铁线网所有站点某一天的警情数量
+
+     * 1.根据传入的参数date，以站点名分组，查询站点在date这一个月的警情数量 地铁站点名:eventCount
+     * 2.根据查询list遍历得到每个站点名,查询地铁站点信息表获得地铁站点相关信息
      *
+     * @param date 格式 yyyy-MM，需要查询的日期，如果为空则默认为上月
      * @return
      */
     @RequestMapping(value = "count", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
@@ -54,16 +72,13 @@ public class WarningController {
             if (date == "") {
                 String currentTime = DateUtil.getCurrentMonth();
                 date = DateUtil.getLastMonth(currentTime);
-            } else {
-                StringBuffer sb = new StringBuffer(date.split("/")[0]);
-                sb.append("-").append(date.split("/")[1]);
-                date = sb.toString();
             }
             List<Object[]> list = subwayEventDao.selectByEventTime(date + "%");
-            List<StationCount> scList;
-            if (list != null && !list.isEmpty())
+            List<StationCount> scList = new ArrayList<>();
+            if (list != null && !list.isEmpty()) {
                 if (list.get(0)[0] == null) list.remove(list.get(0));
-            scList = ConvertUtil.castEntity(list, StationCount.class);
+                scList = ConvertUtil.castEntity(list, StationCount.class);
+            }
             JSONObject obj;
             int sum = 0;
             if (scList != null && !scList.isEmpty())
@@ -89,12 +104,14 @@ public class WarningController {
         return new Response("200", result);
     }
 
-
     /**
      * 查询一个站点某一天的警情列表
      *
-     * @param date 格式 yyyy/MM
-     *             需要查询的日期，如果为空则默认为昨天
+     * 1.根据传入的参数station_id，date查询站点在date这个月的警情信息
+     *  包括obj.eventId,obj.category,obj.type,obj.content,obj.eventTime
+     * 2.然后再通过station_id获取站点详细信息
+     * 3.组合成json返回
+     * @param date 格式 yyyy-MM 需要查询的日期，如果为空则默认为上个月
      * @return
      */
     @RequestMapping(value = "station/list", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
@@ -105,10 +122,6 @@ public class WarningController {
             if (date == "") {
                 String currentTime = DateUtil.getCurrentMonth();
                 date = DateUtil.getLastMonth(currentTime);
-            } else {
-                StringBuffer sb = new StringBuffer(date.split("/")[0]);
-                sb.append("-").append(date.split("/")[1]);
-                date = sb.toString();
             }
             List<Object[]> objects = subwayEventDao.findByStationIdAndTime(station_id, date + "%");
             List<Event> events = new ArrayList<>();
@@ -134,18 +147,16 @@ public class WarningController {
 
     }
 
-    @Autowired
-    EventCategoryCountDao eventCategoryCountDao;
-    @Autowired
-    EventCountDao eventCountDao;
-    @Autowired
-    LocalPoliceEventDao localPoliceEventDao;
 
     /**
-     * 当月警情
-     * 按类型 派出所 总数 进行警情显示
+     * 查询当月警情
+     * 按类型，派出所进行警情总数显示
      *
-     * @param date
+     * 1.根据传入的参数date获取当前月份,得到上月,上年时间
+     * 2.然后根据上述三个时间在event_count,event_category_count,local_police_event3个表进行查询
+     * 得到警情统计,警情类型统计，派出所警情统计
+     *3.派出所警情统计应符合15个公交派出所标准,最后需做一个filter
+     * @param date yyyy-MM
      * @return
      */
     @RequestMapping(value = "statistic/month", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
@@ -154,11 +165,6 @@ public class WarningController {
         try {
             if (date == "")
                 date = DateUtil.getCurrentMonth();
-            else {
-                StringBuffer sb = new StringBuffer(date.split("/")[0]);
-                sb.append("-").append(date.split("/")[1]);
-                date = sb.toString();
-            }
             String lastMonth = DateUtil.getLastMonth(date);
             String lastYear = DateUtil.getLastYear(date);
 
@@ -175,17 +181,11 @@ public class WarningController {
             List<Object[]> localPoliceEvents = localPoliceEventDao.findByTime(date);
             List<LocalPoliceEventCount> localPoliceEventList;
 
-            List<LocalPoliceEventCount> departmentList =new ArrayList<>();
+            List<LocalPoliceEventCount> departmentList = new ArrayList<>();
             if (!localPoliceEvents.isEmpty()) {
                 localPoliceEventList = ConvertUtil.castEntity(localPoliceEvents, LocalPoliceEventCount.class);
                 //对police做筛选
-                for ( LocalPoliceEventCount obj:localPoliceEventList) {
-                    if (obj.getPolice().contains("公交") &&!"公交分局".equals(obj.getPolice())
-                            &&! "公交分局执法专业队".equals(obj.getPolice())
-                            &&!"公交分局刑警大队".equals(obj.getPolice())) {
-                        departmentList.add(obj);
-                    }
-                }
+                filterPolice(localPoliceEventList, departmentList);
             }
 
             result.put("currentMonth", currentMonthCount);
@@ -204,14 +204,14 @@ public class WarningController {
         }
     }
 
-
-    /**
-     * @param warningCondition
-     * @return
-     */
-    @RequestMapping(value = "select", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response select(WarningCondition warningCondition) {
-        return new Response("404", "failed");
+    private void filterPolice(List<LocalPoliceEventCount> localPoliceEventList, List<LocalPoliceEventCount> departmentList) {
+        for (LocalPoliceEventCount obj : localPoliceEventList) {
+            if (obj.getPolice().contains("公交") && !"公交分局".equals(obj.getPolice())
+                    && !"公交分局执法专业队".equals(obj.getPolice())
+                    && !"公交分局刑警大队".equals(obj.getPolice())) {
+                departmentList.add(obj);
+            }
+        }
     }
 
     /**
@@ -223,13 +223,14 @@ public class WarningController {
     @RequestMapping(value = "bus_station", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response warning_bus_station() {
         //String currentTime = DateUtil.getCurrentTimeyyyy_MM_dd();
-        String currentTime = "2012/01/06";
-        List<BusWarning> busWarningList = busWarningDao.findByAF_TIME(currentTime + " 00:00:00.000", currentTime + " 23:59:59.000");
-        if (busWarningList != null && !busWarningList.isEmpty()) {
-            return new Response("200", busWarningList);
-        } else {
-            return new Response("404", "failed");
-        }
+//        String currentTime = "2012/01/06";
+//        List<BusWarning> busWarningList = busWarningDao.findByAF_TIME(currentTime + " 00:00:00.000", currentTime + " 23:59:59.000");
+//        if (busWarningList != null && !busWarningList.isEmpty()) {
+//            return new Response("200", busWarningList);
+//        } else {
+//            return new Response("404", "failed");
+//        }
+        return new Response("404", "failed");
     }
 
     /**
@@ -240,133 +241,211 @@ public class WarningController {
      */
     @RequestMapping(value = "bus_line", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response warning_bus_line() {
-        //String currentTime = DateUtil.getCurrentTimeyyyy_MM_dd();
-        JSONObject result = new JSONObject();
-        String currentTime = "2012/01/06";
-        List<String> lineIdList = busWarningDao.findByAF_TIMEGroupByLine(currentTime + " 00:00:00.000", currentTime + " 23:59:59.000");
-        if (lineIdList != null && !lineIdList.isEmpty()) {
-            for (String lineId : lineIdList) {
-                if (lineId != null) {
-                    List<BusWarning> busWarningList = busWarningDao.findByAF_TIMEAndLineId(currentTime + " 00:00:00.000", currentTime + " 23:59:59.000", lineId);
-                    if (busWarningList != null && !busWarningList.isEmpty()) {
-                        result.put(lineId.trim(), busWarningList);
-                    }
-                }
-            }
-            return new Response("200", result);
-        } else {
-            return new Response("404", "failed");
-        }
-    }
-
-    /**
-     * 警情列表
-     * 全部警情表字段，提供匹配站点ID的警情列表
-     *
-     * @param station_id
-     * @return
-     */
-    @RequestMapping(value = "list", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response warning_lsit(@RequestParam("station_id") String station_id) {
+//        //String currentTime = DateUtil.getCurrentTimeyyyy_MM_dd();
+//        JSONObject result = new JSONObject();
+//        String currentTime = "2012/01/06";
+//        List<String> lineIdList = busWarningDao.findByAF_TIMEGroupByLine(currentTime + " 00:00:00.000", currentTime + " 23:59:59.000");
+//        if (lineIdList != null && !lineIdList.isEmpty()) {
+//            for (String lineId : lineIdList) {
+//                if (lineId != null) {
+//                    List<BusWarning> busWarningList = busWarningDao.findByAF_TIMEAndLineId(currentTime + " 00:00:00.000", currentTime + " 23:59:59.000", lineId);
+//                    if (busWarningList != null && !busWarningList.isEmpty()) {
+//                        result.put(lineId.trim(), busWarningList);
+//                    }
+//                }
+//            }
+//            return new Response("200", result);
+//        } else {
+//            return new Response("404", "failed");
+//        }
+        // TODO: 2017/6/2
         return new Response("404", "failed");
     }
 
+    DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
     /**
-     * 警情概况
-     * 本月警情总数，环比，同比
+     * 警情分析
+     *
+     * 统计维度
+     * 地铁/公交：派出所，线路，站点，各警情类型，各警情性质
+     *
+     * 1.通过获取参数warningAnalysis的属性type分地铁（dt），公交(gj)类型统计警情
+     * 2.限定条件为类型type，起止时间start,end
+     *
+     *
+     * @param warningAnalysis
+     * 属性包含start,end，type，dimension
+     * start 分析时段起, end 分析时段止, type 地铁/公交, dimension 分析纬度
+     *
+     * dimension包含police，line，station，jqlb，jqxz
+     * police 派出所，line 线路，station 站点，jqlb 各警情类型，jqxz 各警情性质
      *
      * @return
      */
-    @RequestMapping(value = "survey", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response warning_survey() {
-        return new Response("404", "failed");
-    }
-
-    /**
-     * 警情类型
-     * 本月刑事警情，治安警情，其他数量
-     *
-     * @return
-     */
-    @RequestMapping(value = "type", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response warning_type() {
-        return new Response("404", "failed");
-    }
-
-    /**
-     * 警情类别
-     * 返回本月两枪，扒窃，盗窃，诈骗，故意伤害，遗失，求助，其他，故意杀人，抢劫，抢夺，重复报警数量
-     *
-     * @param startTime
-     * @param endTime
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "classes", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response warning_classes(String startTime, String endTime) throws Exception {
-
+    @RequestMapping(value = "analysis", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
+    public Response analysis(WarningAnalysis warningAnalysis) {
         JSONObject result = new JSONObject();
-
-        List<Object[]> objects = subwayEventDao.countByType(startTime + " 00:00:00.000",
-                endTime + " 23:59:59.000");
-        List<WarningTypeCount> warningTypeCountList = new ArrayList<>();
-
-        if (objects != null && !objects.isEmpty())
-            warningTypeCountList = ConvertUtil.castEntity(objects, WarningTypeCount.class);
-        else
-            return new Response("404", "failed");
-
-        if (warningTypeCountList != null && !warningTypeCountList.isEmpty()) {
-            for (WarningTypeCount w : warningTypeCountList) {
-                if (w.getType() != null || w.getType() != "") {
-                    result.put(w.getType(), w.getType_count());
+        String start = warningAnalysis.getStart();
+        String end = warningAnalysis.getEnd();
+        try {
+            if ("dt".equals(warningAnalysis.getType())) {
+                if ("police".equals(warningAnalysis.getDimension())) {
+                    analyByPoliceSubway(result, start, end);
+                } else if ("line".equals(warningAnalysis.getDimension())) {
+                    analyByLineSubway(result, start, end);
+                } else if ("station".equals(warningAnalysis.getDimension())) {
+                    analyByStationSubway(result, start, end);
+                } else if ("jqlb".equals(warningAnalysis.getDimension())) {
+                    analyByJqlbSubway(result, start, end);
+                } else if ("jqxz".equals(warningAnalysis.getDimension())) {
+                    analyByJqxzSubway(result, start, end);
+                }
+            } else if ("gj".equals(warningAnalysis.getType())) {
+                if ("police".equals(warningAnalysis.getDimension())) {
+                    analyByPoliceBus(result, start, end);
+                } else if ("line".equals(warningAnalysis.getDimension())) {
+                    analyByLineBus(result, start, end);
+                } else if ("station".equals(warningAnalysis.getDimension())) {
+                    analyByStationBus(result, start, end);
+                } else if ("jqlb".equals(warningAnalysis.getDimension())) {
+                    analyByJqlbBus(result, start, end);
+                } else if ("jqxz".equals(warningAnalysis.getDimension())) {
+                    analyByJqxzBus(result, start, end);
                 }
             }
-
-            return new Response("200", result);
-        } else {
-            return new Response("404", "failed");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return new Response("200", result);
+    }
 
+    private void analyByJqxzBus(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = busEventDao.countByCategory(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            if (ConvertUtil.isJqxzBus(obj.getKey()))
+                result.put(obj.getKey(), obj.getValue());
+        }
+    }
+
+    private void analyByJqlbBus(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = busEventDao.countByType(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            if (ConvertUtil.isJqlb(obj.getKey()))
+                result.put(obj.getKey(), obj.getValue());
+        }
+    }
+
+    private void analyByStationBus(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = busEventDao.countByStationName(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            result.put(obj.getKey(), obj.getValue());
+        }
+    }
+
+    private void analyByLineBus(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = busEventDao.countByLineId(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            result.put(obj.getKey(), obj.getValue());
+        }
+    }
+
+    private void analyByPoliceBus(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = busEventDao.countByPolice(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            String polcie_name = policeDao.fingPoliceNameByPoliceId(obj.getKey());
+            if (polcie_name != null)
+                result.put(polcie_name, obj.getValue());
+        }
+    }
+
+    private void analyByJqxzSubway(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = subwayEventDao.countByCategory(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            if (ConvertUtil.isJqxzSubway(obj.getKey()))
+                result.put(obj.getKey(), obj.getValue());
+        }
+    }
+
+    private void analyByJqlbSubway(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = subwayEventDao.countByType(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            if (ConvertUtil.isJqlb(obj.getKey()))
+                result.put(obj.getKey(), obj.getValue());
+        }
+    }
+
+    private void analyByStationSubway(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = subwayEventDao.countByStationName(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            result.put(obj.getKey(), obj.getValue());
+        }
+    }
+
+    private void analyByLineSubway(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = subwayEventDao.countByLineId(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            result.put(obj.getKey(), obj.getValue());
+        }
+    }
+
+    private void analyByPoliceSubway(JSONObject result, String start, String end) throws Exception {
+        List<Object[]> counts;
+        counts = subwayEventDao.countByPolice(start, end);
+        List<LikeMap> likeMapList = ConvertUtil.castEntity(counts, LikeMap.class);
+        for (LikeMap obj : likeMapList) {
+            String polcie_name = policeDao.fingPoliceNameByPoliceId(obj.getKey());
+            if (polcie_name != null)
+                result.put(polcie_name, obj.getValue());
+        }
     }
 
     /**
-     * 派出所警情
-     * 返回本月派出所ID,警情数
+     * 未使用
      *
-     * @param startTime
-     * @param endTime
+     * @param warningAnalysis
      * @return
      */
-    @RequestMapping(value = "from_local_police_station", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-    public Response warning_from_local_police_station(String startTime, String endTime) throws Exception {
-
-        JSONObject result = new JSONObject();
-
-        List<Object[]> objects = subwayEventDao.countByPolice(startTime + " 00:00:00.000",
-                endTime + " 23:59:59.000");
-
-        List<PoliceWarningCount> policeWarningCountList = new ArrayList<>();
-
-        if (objects != null && !objects.isEmpty())
-            policeWarningCountList = ConvertUtil.castEntity(objects, PoliceWarningCount.class);
-        else
-            return new Response("404", "failed");
-
-        if (policeWarningCountList != null && !policeWarningCountList.isEmpty()) {
-            for (PoliceWarningCount p: policeWarningCountList
-                    ) {
-                if (p.getPolice() != null || p.getPolice() != "") {
-                    result.put(p.getPolice_id(), p.getEvent_count_numbers());
-                }
-            }
-
-            return new Response("200", result);
-        }
-        else {
-            return new Response("404", "failed");
-        }
-
-
+    @RequestMapping(value = "analysis_count", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
+    public Response analysis_count(WarningAnalysis warningAnalysis) {
+//        JSONObject result = new JSONObject();
+//        String start = warningAnalysis.getStart();
+//        String end = warningAnalysis.getEnd();
+//        try {
+//            Timestamp startTimestamp = new Timestamp(format.parse(start + " 00:00:00").getTime());
+//            Timestamp endTimestamp = new Timestamp(format.parse(end + " 00:00:00").getTime());
+//            //警情性质
+//            int busType = busWarningDao.count(startTimestamp, endTimestamp);
+//            int subwayType = jqfxJqlrDtDao.count(startTimestamp, endTimestamp);
+//            //警情类型
+//            List<Object[]> dtClass = jqfxJqlrDtDao.countByType(startTimestamp, endTimestamp);
+//            List<Object[]> gjClass = busWarningDao.countByType(startTimestamp, endTimestamp);
+//            //审批状态
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+        return new Response("200", "success");
     }
+
+
 }

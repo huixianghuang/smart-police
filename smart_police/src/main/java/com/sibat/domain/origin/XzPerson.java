@@ -1,37 +1,44 @@
 package com.sibat.domain.origin;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 /**
  * Created by tgw61 on 2017/5/3.
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "xz_person")
+@Table(name = "t_xz_person")
 public class XzPerson {
-    private String AJXZ;
-    private String NAME;
-    private String SEX;
-    private String AGE;
-    private String ID_NUMBER;
-    private String HJ;
-    private String XZZ;
-    private String PHONE;
-    private String BAXX;
-    private String ZADD;
-    private String CFJG;
-    private String BADW;
-    private String JBR;
-    private String CREATE_TIME;
-    private String ZASJ;
-    private String CF_TIME;
-    private String JBR_CODE;
-    private String DEPT_CODE;
+    private String ajxz;
+    private String name;
+    private String sex;
+    private String age;
+    private String idNumber;
+    private String hj;
+    private String xzz;
+    private String phone;
+    private String baxx;
+    private String zadd;
+    private String cfjg;
+    private String badw;
+    private String jbr;
+    private Timestamp createTime;
+    private String zasj;
+    private Timestamp cfTime;
+    private String jbrCode;
+    private String deptCode;
     @Id
-    private String ID;
-    private String JBR_SEC;
-    private String JBR_CODE_SEC;
-    private String CFLX;
-
+    private int id;
+    private String jbr_sec;
+    private String jbr_code_sec;
+    private Integer cflx;
 }

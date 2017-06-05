@@ -11,7 +11,6 @@ import javax.persistence.*;
  *
  *  select * from subway_event where date(event_time)='2012/12/29'; 提取只有日期的时间
  */
-@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "subway_event")
@@ -35,7 +34,23 @@ public class SubwayEvent {
     public SubwayEvent() {
     }
 
-    public SubwayEvent(String stationId, String stationName, String lineId, String lineName, String eventId, String category, String type, String content, String eventTime, String police,String policeId, String time) {
+    public SubwayEvent(int id, String stationId, String stationName, String lineId, String lineName, String eventId, String category, String type, String content, String eventTime, String police, String policeId, String time) {
+        this.id = id;
+        this.stationId = stationId;
+        this.stationName = stationName;
+        this.lineId = lineId;
+        this.lineName = lineName;
+        this.eventId = eventId;
+        this.category = category;
+        this.type = type;
+        this.content = content;
+        this.eventTime = eventTime;
+        this.police = police;
+        this.policeId = policeId;
+        this.time = time;
+    }
+
+    public SubwayEvent(String stationId, String stationName, String lineId, String lineName, String eventId, String category, String type, String content, String eventTime, String police, String policeId, String time) {
         this.stationId = stationId;
         this.stationName = stationName;
         this.lineId = lineId;
