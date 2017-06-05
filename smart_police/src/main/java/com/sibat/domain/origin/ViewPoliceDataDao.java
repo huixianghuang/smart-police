@@ -15,8 +15,6 @@ import java.util.List;
 public interface ViewPoliceDataDao extends JpaRepository<ViewPoliceData, String>,
         PagingAndSortingRepository<ViewPoliceData, String>, JpaSpecificationExecutor<ViewPoliceData> {
 
-
-
     @Query("select obj from ViewPoliceData obj where obj.deptName=?1")
     List<ViewPoliceData> findByDeptName(String deptName);
 }

@@ -3,6 +3,7 @@ package com.sibat.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sibat.domain.origin.*;
+import com.sibat.domain.other.PoliceDao;
 import com.sibat.domain.pojo.Duty;
 import com.sibat.util.DateUtil;
 import com.sibat.util.Response;
@@ -41,20 +42,22 @@ public class OnDutyController {
     TDtJlbDao tDtJlbDao;
     @Autowired
     ViewPoliceDataDao viewPoliceDataDao;
+    @Autowired
+    PoliceDao policeDao;
 
     DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 警员值班API
-     *
+     * <p>
      * 返回警员指定日期date值班情况
-     *
+     * <p>
      * 1. 根据date得到所在周时间
      * 2. 有police，data两个参数在TDtJlbPcs上获得值班领导记录，在TDtJlb获得值班警员记录
      * 3. 获得的记录构造成JSON格式数据存储在result中并返回给前台
      * 注警员值班记录有重复,需要去重
      *
-     * @param date 当date为空时,取当前时间yyyy-MM-dd
+     * @param date   当date为空时,取当前时间yyyy-MM-dd
      * @param police
      * @return
      */
@@ -96,7 +99,7 @@ public class OnDutyController {
     }
 
     private JSONObject getDutyResuslt(List<TDtJlb> duty) {
-        JSONObject obj=new JSONObject();
+        JSONObject obj = new JSONObject();
         Map<String, String> duty_map_mor = new HashMap<>();
         Map<String, String> duty_map_eve = new HashMap<>();
         if (!duty.isEmpty()) {
@@ -104,7 +107,7 @@ public class OnDutyController {
             for (TDtJlb tDtJlb : duty) {
                 if (tDtJlb.getPB_TYPE() == 0) {
                     putStationDutyMap(duty_map_mor, tDtJlb);
-                } else if(tDtJlb.getPB_TYPE() == 1){
+                } else if (tDtJlb.getPB_TYPE() == 1) {
                     putStationDutyMap(duty_map_eve, tDtJlb);
                 }
             }
@@ -158,11 +161,12 @@ public class OnDutyController {
 
     /**
      * 设立站点-值班警员对应map
+     *
      * @param duty_map_mor
      * @param tDtJlb
      */
     private void putStationDutyMap(Map<String, String> duty_map_mor, TDtJlb tDtJlb) {
-        if (tDtJlb.getZQNAME()!=null&& duty_map_mor.get(tDtJlb.getZQNAME()) != null
+        if (tDtJlb.getZQNAME() != null && duty_map_mor.get(tDtJlb.getZQNAME()) != null
                 && !duty_map_mor.get(tDtJlb.getZQNAME()).contains(tDtJlb.getRYNAME())) {
             StringBuffer value = new StringBuffer(duty_map_mor.get(tDtJlb.getZQNAME()));
             value.append(",").append(tDtJlb.getRYNAME());
@@ -188,24 +192,31 @@ public class OnDutyController {
 
     /**
      * 警员查询API
-     *
+     * <p>
      * 查询派出所警员信息/查询全部警员信息
      * localhost:8997/api/event/metro/search_police
      * localhost:8997/api/event/metro/search_police?deptName=福田公交派出所
-     *
+     * <p>
      * 1.根据参数viewPoliceData中的属性deptName查询派出所警员信息
      * 2.deptName为空时是全员查询，不为空则按照deptName指定的派出所查询
      * 3.查询的信息构造成分页JSON数据保存在polices中并返回给前台
      *
      * @param viewPoliceData 警员信息库，包含属性deptName
-     * @param page 页码，默认为0
-     * @param size 每一页大小，默认为10
+     * @param page           页码，默认为0
+     * @param size           每一页大小，默认为10
      * @return JSON
      */
     @RequestMapping(value = "search_police", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response search_police(ViewPoliceData viewPoliceData,
                                   @RequestParam(value = "page", defaultValue = "0") int page,
                                   @RequestParam(value = "size", defaultValue = "10") int size) {
+        if (viewPoliceData.getDept_id() != null) {
+            String deptName = policeDao.fingPoliceNameByPoliceId(viewPoliceData.getDept_id());
+            if (deptName != null)
+                viewPoliceData.setDeptName(deptName);
+            else
+                return new Response("400", "parameter errors");
+        }
         Sort sort = new Sort(Sort.Direction.ASC, "userCode");
         Pageable pageable = new PageRequest(page, size, sort);
         Specification<ViewPoliceData> spec = getPolice(viewPoliceData);
@@ -232,13 +243,13 @@ public class OnDutyController {
 
     /**
      * 警员模糊查询
-     *
+     * <p>
      * 1.根据参数content模糊搜索警员信息 涉及:userCode警号,name姓名,mobilePhone电话
      * 2.查询的信息构造成分页JSON数据保存在polices中并返回给前台
      *
      * @param content 搜索文本
-     * @param page 页码，默认为0
-     * @param size 每一页大小，默认为10
+     * @param page    页码，默认为0
+     * @param size    每一页大小，默认为10
      * @return JSON
      */
     @RequestMapping(value = "fuzzy_search_police", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
