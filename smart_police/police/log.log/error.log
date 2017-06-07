@@ -201,3 +201,35 @@ java.lang.OutOfMemoryError: unable to create new native thread
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:745)
+2017-06-05 14:40:06.825 [main] ERROR o.s.boot.SpringApplication -Application startup failed
+org.springframework.context.ApplicationContextException: Unable to start embedded container; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tomcatEmbeddedServletContainerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/EmbeddedServletContainerAutoConfiguration$EmbeddedTomcat.class]: Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: ContextPath must start with '/' and not end with '/'
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.onRefresh(EmbeddedWebApplicationContext.java:137)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:536)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151)
+	at com.sibat.SmartPoliceApplication.main(SmartPoliceApplication.java:12)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tomcatEmbeddedServletContainerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/EmbeddedServletContainerAutoConfiguration$EmbeddedTomcat.class]: Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: ContextPath must start with '/' and not end with '/'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:564)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.getEmbeddedServletContainerFactory(EmbeddedWebApplicationContext.java:199)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.createEmbeddedServletContainer(EmbeddedWebApplicationContext.java:162)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.onRefresh(EmbeddedWebApplicationContext.java:134)
+	... 8 common frames omitted
+Caused by: java.lang.IllegalArgumentException: ContextPath must start with '/' and not end with '/'
+	at org.springframework.boot.context.embedded.AbstractConfigurableEmbeddedServletContainer.checkContextPath(AbstractConfigurableEmbeddedServletContainer.java:132)
+	at org.springframework.boot.context.embedded.AbstractConfigurableEmbeddedServletContainer.setContextPath(AbstractConfigurableEmbeddedServletContainer.java:120)
+	at org.springframework.boot.autoconfigure.web.ServerProperties.customize(ServerProperties.java:197)
+	at org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizerBeanPostProcessor.postProcessBeforeInitialization(EmbeddedServletContainerCustomizerBeanPostProcessor.java:73)
+	at org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizerBeanPostProcessor.postProcessBeforeInitialization(EmbeddedServletContainerCustomizerBeanPostProcessor.java:59)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	... 16 common frames omitted
