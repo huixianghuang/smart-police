@@ -35,7 +35,8 @@ public class PreWarningController {
     PersonPathDao personPathDao;
     @Autowired
     IdentityDao identityDao;
-    DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//    DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     Logger logger = Logger.getLogger(PreWarningController.class);
 
@@ -58,16 +59,19 @@ public class PreWarningController {
      * 构建了身份证id前6位对应籍贯表,根据嫌疑人身份证判断籍贯
      * 5.各个预警类别预警数 zdryState ：预警类别，预警案件数，占比
      * 预警类别(10=A.普通关注、11=B.积极关注、12=C.重点关注,13=D.立即处置)
-     * 6.各个预警类型预警案件数：类型，预警案件数，占比.无预警类型字段
+     * 6.各个预警类型预警案件数 zdryTYPE ：类型，预警案件数，占比.无预警类型字段
+     * 类型类别(“扒窃”1、“盗窃”2、“诈骗”3、“抢夺”4、“抢劫”5、“涉毒”6、“涉黑”7、“其他”8.)
      * 7.查询的信息构造成JSON数据保存在result并返回给前台
      *
      * @param start 起始时间
      * @param end   结束时间
+     * @param deptName 派出所名
      * @return JSON
      */
     @RequestMapping(value = "suspect_analysis", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response suspect_analysis(@RequestParam("start") String start,
-                                     @RequestParam("end") String end) {
+                                     @RequestParam("end") String end,
+                                     @RequestParam("deptName") String deptName) {
         JSONObject result = new JSONObject();
         //场所
         Map<String, Integer> site = new ConcurrentHashMap<>();
@@ -79,18 +83,30 @@ public class PreWarningController {
         Map<String, Integer> nativePlace = new HashMap<>();
         //预警类别数
         Map<String, Integer> zdryState = new HashMap<>();
+        //预警类型预警案件数
+        Map<String, Integer> zdryType = new HashMap<>();
+
         try {
             Timestamp startTimestamp = new Timestamp(format.parse(start).getTime());
             Timestamp endTimestamp = new Timestamp(format.parse(end).getTime());
             List<PersonPath> personPaths = personPathDao.selectByTime(startTimestamp, endTimestamp);
             ExecutorService executorService = Executors.newFixedThreadPool(10);
             if (ConvertUtil.isNotNull(personPaths)) {
+                Boolean isAllBool = isAll(deptName);
                 for (PersonPath obj : personPaths) {
                     executorService.execute(
                             new Runnable() {
                                 @Override
                                 public void run() {
-                                    dealMap(obj, site, name, time, zdryState, nativePlace);
+
+                                    if (isAllBool) {
+                                        //查询全部派出所
+                                        dealMapForAll(obj, site, name, time, zdryType, zdryState, nativePlace);
+                                    } else {
+                                        //查询指定派出所
+                                        dealMapForPolice(obj, deptName, site, name, time, zdryType, zdryState, nativePlace);
+                                    }
+
                                 }
                             }
                     );
@@ -104,6 +120,7 @@ public class PreWarningController {
                 result.put("site", sortMapDesc(site));
                 result.put("name", sortMapDesc(name));
                 result.put("time", time);
+                result.put("zdryType", zdryType);
                 result.put("zdryState", zdryState);
                 result.put("nativePlace", sortMapDesc(nativePlace));
             }
@@ -114,18 +131,55 @@ public class PreWarningController {
         }
     }
 
-    private void dealMap(PersonPath obj, Map<String, Integer> site, Map<String, Integer> name, Map<String, Integer> time, Map<String, Integer> zdryState, Map<String, Integer> nativePlace) {
+    private boolean isAll(String police) {
+        if ("全部".equals(police)) {
+            return true;
+        }
+        return false;
+    }
+    private synchronized void dealMapForAll(PersonPath obj,
+                         Map<String, Integer> site,
+                         Map<String, Integer> name,
+                         Map<String, Integer> time,
+                         Map<String, Integer> zdryType,
+                         Map<String, Integer> zdryState,
+                         Map<String, Integer> nativePlace) {
         dealSiteMap(site, obj);
         dealNameMap(name, obj);
         dealTimeMap(time, obj);
+
         if (obj.getS_ID_NUMBER() != null) {
             Suspect suspect = suspectDao.findByID(obj.getS_ID_NUMBER());
-            dealZdryState(zdryState, suspect);
-            dealNativePlace(nativePlace, obj);
+            if (suspect != null) {
+                dealZdryType(zdryType, suspect);
+                dealZdryState(zdryState, suspect);
+                dealNativePlace(nativePlace, obj);
+            }
         }
     }
+    private synchronized void dealMapForPolice(PersonPath obj, String deptName,
+                                  Map<String, Integer> site,
+                                  Map<String, Integer> name,
+                                  Map<String, Integer> time,
+                                  Map<String, Integer> zdryType,
+                                  Map<String, Integer> zdryState,
+                                  Map<String, Integer> nativePlace) {
 
-    private void dealNativePlace(Map<String, Integer> nativePlace, PersonPath obj) {
+        if (obj.getS_ID_NUMBER() != null) {
+            Suspect suspect = suspectDao.findByIDAndDEPTNAME(obj.getS_ID_NUMBER(), deptName);
+            if (suspect != null) {
+                dealSiteMap(site, obj);
+                dealNameMap(name, obj);
+                dealTimeMap(time, obj);
+                dealZdryType(zdryType, suspect);
+                dealZdryState(zdryState, suspect);
+                dealNativePlace(nativePlace, obj);
+            }
+        }
+
+    }
+
+    private synchronized void dealNativePlace(Map<String, Integer> nativePlace, PersonPath obj) {
         if (obj != null && obj.getS_ID_NUMBER() != null && obj.getS_ID_NUMBER().length() > 6) {
             String brithplace = identityDao.findPlaceById(obj.getS_ID_NUMBER().substring(0, 6));
             if (brithplace != null) {
@@ -140,9 +194,9 @@ public class PreWarningController {
         }
     }
 
-    private void dealZdryState(Map<String, Integer> zdryState, Suspect suspect) {
+    private synchronized void dealZdryState(Map<String, Integer> zdryState, Suspect suspect) {
         if (suspect != null && suspect.getZDRYSTATE() != null) {
-            String type = ConvertUtil.getPreWarnType(suspect.getZDRYSTATE());
+            String type = ConvertUtil.getPreWarnState(suspect.getZDRYSTATE());
             if (type != null) {
                 if (zdryState.get(type) != null) {
                     int value = zdryState.get(type);
@@ -153,8 +207,21 @@ public class PreWarningController {
             }
         }
     }
+    private synchronized void dealZdryType(Map<String, Integer> zdryType, Suspect suspect) {
+        if (suspect != null && suspect.getZDRYTYPE() != null) {
+            String type = ConvertUtil.getPreWarnType(suspect.getZDRYTYPE());
+            if (type != null) {
+                if (zdryType.get(type) != null) {
+                    int value = zdryType.get(type);
+                    zdryType.put(type, ++value);
+                } else {
+                    zdryType.put(type, 1);
+                }
+            }
+        }
+    }
 
-    private void dealSiteMap(Map<String, Integer> site, PersonPath obj) {
+    private synchronized void dealSiteMap(Map<String, Integer> site, PersonPath obj) {
         if (obj.getDWMC() != null) {
             if (site.get(obj.getDWMC()) != null) {
                 int value = site.get(obj.getDWMC());
@@ -165,7 +232,7 @@ public class PreWarningController {
         }
     }
 
-    private void dealNameMap(Map<String, Integer> name, PersonPath obj) {
+    private synchronized void dealNameMap(Map<String, Integer> name, PersonPath obj) {
         if (obj.getNAME() != null) {
             if (name.get(obj.getNAME()) != null) {
                 int value = name.get(obj.getNAME());
@@ -176,11 +243,11 @@ public class PreWarningController {
         }
     }
 
-    private void dealTimeMap(Map<String, Integer> time, PersonPath obj) {
+    private synchronized void dealTimeMap(Map<String, Integer> time, PersonPath obj) {
         if (obj.getCREATE_DATE() != null) {
             String key = obj.getCREATE_DATE().toString().split(" ")[1];
             key = key.split(":")[0];
-            if (time.get(key) != null) {
+            if (time.get(key) != null ) {
                 int value = time.get(key);
                 time.put(key, ++value);
             } else {

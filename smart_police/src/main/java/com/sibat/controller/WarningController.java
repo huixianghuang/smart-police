@@ -155,7 +155,7 @@ public class WarningController {
      * 1.根据传入的参数date获取当前月份,得到上月,上年时间
      * 2.然后根据上述三个时间在event_count,event_category_count,local_police_event3个表进行查询
      * 得到警情统计,警情类型统计，派出所警情统计
-     *3.派出所警情统计应符合15个公交派出所标准,最后需做一个filter
+     * 3.派出所警情统计应符合15个公交派出所标准,最后需做一个filter
      * @param date yyyy-MM
      * @return
      */

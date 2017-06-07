@@ -18,4 +18,7 @@ public interface SuspectDao extends JpaRepository<Suspect, Integer>, PagingAndSo
 
     @Query(value = "select * from tb_gjzd_person obj where id_number_18=?1 limit 1", nativeQuery = true)
     Suspect findByID(String s_id_number);
+
+    @Query(value = "select * from tb_gjzd_person obj where id_number_18=?1 and deptname=?2 limit 1", nativeQuery = true)
+    Suspect findByIDAndDEPTNAME(String s_id_number, String deptName);
 }

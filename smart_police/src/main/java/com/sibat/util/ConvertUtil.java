@@ -109,7 +109,7 @@ public class ConvertUtil {
     }
 
     //    预警类别(10=A.普通关注、11=B.积极关注、12=C.重点关注,13=D.立即处置)
-    public static String getPreWarnType(String str) {
+    public static String getPreWarnState(String str) {
         switch (str) {
             case "10":
                 return "普通关注";
@@ -119,6 +119,29 @@ public class ConvertUtil {
                 return "重点关注";
             case "13":
                 return "立即处置";
+        }
+        return null;
+    }
+
+    //    重点人员类别(“扒窃”1、“盗窃”2、“诈骗”3、“抢夺”4、“抢劫”5、“涉毒”6、“涉黑”7、“其他”8.)
+    public static String getPreWarnType(String str) {
+        switch (str) {
+            case "1":
+                return "扒窃";
+            case "2":
+                return "盗窃";
+            case "3":
+                return "诈骗";
+            case "4":
+                return "抢夺";
+            case "5":
+                return "抢劫";
+            case "6":
+                return "涉毒";
+            case "7":
+                return "涉黑";
+            case "8":
+                return "其他";
         }
         return null;
     }
