@@ -22,10 +22,13 @@ public interface PersonPathDao extends JpaRepository<PersonPath, Integer> {
     @Query(value = "select * from t_gjzd_person_gj_new where s_id_number=?1 order by create_date desc",nativeQuery = true)
     List<PersonPath> findByIdtype2(String id);
 
-    //@Query(value = "select * from t_gjzd_person_gj_new where \"NAME\"=?1 order by create_date desc",nativeQuery = true)
     @Query("select obj from PersonPath obj where obj.NAME =?1")
     List<PersonPath> findByName(String NAME);
 
     @Query("select obj from PersonPath obj where obj.CREATE_DATE between ?1 and ?2 order by obj.CREATE_DATE desc")
     List<PersonPath> selectByTime(Timestamp start,Timestamp end);
+
+    @Query(value = "select * from t_gjzd_person_gj_new where s_id_number in (:strings); ", nativeQuery = true)
+    List<PersonPath> findByS_ID_NUMBER(@Param(value = "strings") List<String> strings);
+
 }

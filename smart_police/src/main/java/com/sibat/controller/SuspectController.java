@@ -229,16 +229,21 @@ public class SuspectController {
      * 1.根据传入的参数进行嫌疑人处置数据统计分析
      *
      * 查询条件：派出所，嫌疑人类别（4类），时间，粒度（小时/天/月）；
-     * 统计维度：办案单位：派出所名，侦办案件数，占比；年龄（0-17，18-40，41-65，>66):年龄段，侦办案件数，占比；
+     *
+     * 统计维度：
+     * 办案单位：派出所名，侦办案件数，占比；
+     * 年龄（0-17，18-40，41-65，>66):年龄段，侦办案件数，占比；
      * 性别：男，女；
      * 户籍：省，侦办案件数，占比；
-     * 案件类型：类型，侦办案件数，占比；处罚类型：类型，侦办案件数，占比；案件性质：性质分类，侦办案件数，占比
+     * 案件类型：类型，侦办案件数，占比；
+     * 处罚类型：类型，侦办案件数，占比；
+     * 案件性质：性质分类，侦办案件数，占比
      *
-     * @param start
-     * @param end
-     * @param police
-     * @param type      //xj,xz,qj,cb
-     * @param dimension //age/sex/hj/polcie/ajxz/ajlx/punish
+     * @param start 起始时间 yyyy-MM-dd HH:mm:ss
+     * @param end 结束时间 yyyy-MM-dd HH:mm:ss
+     * @param police 派出所
+     * @param type 嫌疑人类别  //刑拘xj, 行政xz, 戒毒qj, 逮捕cb
+     * @param dimension 粒度  //年龄age，性别sex，户籍hj，办案单位police，案件性质ajxz，案件类型ajlx，处罚类型punish
      * @return
      */
     @RequestMapping(value = "dispose_suspect", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)

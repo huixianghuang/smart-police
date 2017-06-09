@@ -159,6 +159,43 @@ public class ConvertUtil {
         }
     }
 
+    public static String getDeptName(String deptName){
+        switch (deptName) {
+            case "440396650000":
+                return "布吉公交派出所";
+            case "440396540000":
+                return "罗湖公交派出所";
+            case "440396630000":
+                return "龙华公交派出所";
+            case "440396570000":
+                return "宝安公交派出所";
+            case "440396550000":
+                return "南山公交派出所";
+            case "440396530000":
+                return "福田公交派出所";
+            case "440396580000":
+                return "龙岗公交派出所";
+            case "440396610000":
+                return "香蜜湖公交派出所";
+            case "440396600000":
+                return "坪山公交派出所";
+            case "440396660000":
+                return "东站公交派出所";
+            case "440396640000":
+                return "北站公交派出所";
+            case "440396620000":
+                return "福永公交派出所";
+            case "440396710000":
+                return "福田枢纽公交派出所";
+            case "440396590000":
+                return "光明公交派出所";
+            case "440396560000":
+                return "盐田公交派出所";
+        }
+
+        return null;
+    }
+
 
 }
 

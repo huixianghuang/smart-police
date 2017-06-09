@@ -35,7 +35,8 @@ public class Suspect {
     private String CREATE_TIME;// DATE 记录创建时间(填表时间)
     private String HOUSEHOLD_FLAG; //户籍状态：2=非户籍人口，1=户籍人口
     private String NOWLIVE; //现居住地址
-    private String ID_NUMBER_18;    //			18位身份证号码
+    private String id_number_18;    //			18位身份证号码
+//    private String ID_NUMBER_18;    //			18位身份证号码
     private String DEPTID;//责任单位ID
     private String ZDRYTYPE;// 重点人员类别(“扒窃”1、“盗窃”2、“诈骗”3、“抢夺”4、“抢劫”5、“涉毒”6、“涉黑”7、“其他”8.)
     private String ZDRYSTATE;//预警类别(10=A.普通关注、11=B.积极关注、12=C.重点关注,13=D.立即处置)

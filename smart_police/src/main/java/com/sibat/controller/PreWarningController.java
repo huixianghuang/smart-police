@@ -5,7 +5,6 @@ import com.sibat.domain.origin.PersonPath;
 import com.sibat.domain.origin.PersonPathDao;
 import com.sibat.domain.origin.Suspect;
 import com.sibat.domain.origin.SuspectDao;
-import com.sibat.domain.other.Identity;
 import com.sibat.domain.other.IdentityDao;
 import com.sibat.util.ConvertUtil;
 import com.sibat.util.Response;
@@ -35,7 +34,6 @@ public class PreWarningController {
     PersonPathDao personPathDao;
     @Autowired
     IdentityDao identityDao;
-//    DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     Logger logger = Logger.getLogger(PreWarningController.class);
@@ -65,65 +63,74 @@ public class PreWarningController {
      *
      * @param start 起始时间
      * @param end   结束时间
-     * @param deptName 派出所名
+     * @param dept_id 派出所名
      * @return JSON
      */
     @RequestMapping(value = "suspect_analysis", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public Response suspect_analysis(@RequestParam("start") String start,
                                      @RequestParam("end") String end,
-                                     @RequestParam("deptName") String deptName) {
+                                     @RequestParam(value = "dept_id", defaultValue = "all") String dept_id) {
         JSONObject result = new JSONObject();
         //场所
         Map<String, Integer> site = new ConcurrentHashMap<>();
         //高危人员
-        Map<String, Integer> name = new HashMap<>();
+        Map<String, Integer> name = new ConcurrentHashMap<>();
         //二十四小时
-        Map<String, Integer> time = new HashMap<>();
+        Map<String, Integer> time = new ConcurrentHashMap<>();
         //籍贯
-        Map<String, Integer> nativePlace = new HashMap<>();
+        Map<String, Integer> nativePlace = new ConcurrentHashMap<>();
         //预警类别数
-        Map<String, Integer> zdryState = new HashMap<>();
+        Map<String, Integer> zdryState = new ConcurrentHashMap<>();
         //预警类型预警案件数
-        Map<String, Integer> zdryType = new HashMap<>();
+        Map<String, Integer> zdryType = new ConcurrentHashMap<>();
 
         try {
             Timestamp startTimestamp = new Timestamp(format.parse(start).getTime());
             Timestamp endTimestamp = new Timestamp(format.parse(end).getTime());
-            List<PersonPath> personPaths = personPathDao.selectByTime(startTimestamp, endTimestamp);
-            ExecutorService executorService = Executors.newFixedThreadPool(10);
-            if (ConvertUtil.isNotNull(personPaths)) {
-                Boolean isAllBool = isAll(deptName);
-                for (PersonPath obj : personPaths) {
-                    executorService.execute(
-                            new Runnable() {
-                                @Override
-                                public void run() {
+            Boolean isAllBool = isAll(dept_id);
 
-                                    if (isAllBool) {
-                                        //查询全部派出所
-                                        dealMapForAll(obj, site, name, time, zdryType, zdryState, nativePlace);
-                                    } else {
-                                        //查询指定派出所
-                                        dealMapForPolice(obj, deptName, site, name, time, zdryType, zdryState, nativePlace);
-                                    }
+            if (isAllBool) {
+                List<Suspect> suspects = suspectDao.findAllByTimeAndPolice(startTimestamp, endTimestamp);
+                List<PersonPath> personPaths = personPathDao.selectByTime(startTimestamp, endTimestamp);
 
-                                }
-                            }
-                    );
+                if (personPaths != null && suspects != null) {
+                    dealSiteMap(site, personPaths);
+                    dealNameMap(name, personPaths);
+                    dealTimeMap(time, personPaths);
+                    dealZdryType(zdryType, suspects);
+                    dealZdryState(zdryState, suspects);
+                    dealNativePlace(nativePlace, personPaths);
                 }
-                executorService.shutdown();
-                try {
-                    executorService.awaitTermination(30, TimeUnit.SECONDS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            } else {
+                dept_id = ConvertUtil.getDeptName(dept_id);
+//                dept_id = "公交分局";
+                List<Suspect> suspects = suspectDao.findByTimeAndPolice(startTimestamp, endTimestamp, dept_id);
+
+                if (suspects.size() > 0) {
+                    List<String> personPathId = new ArrayList<>();
+                    for (Suspect s : suspects) {
+                        personPathId.add(s.getId_number_18());
+                    }
+                    List<PersonPath> personPaths = personPathDao.findByS_ID_NUMBER(personPathId);
+
+                    if (personPaths != null && suspects != null) {
+                        dealSiteMap(site, personPaths);
+                        dealNameMap(name, personPaths);
+                        dealTimeMap(time, personPaths);
+                        dealZdryType(zdryType, suspects);
+                        dealZdryState(zdryState, suspects);
+                        dealNativePlace(nativePlace, personPaths);
+                    }
                 }
-                result.put("site", sortMapDesc(site));
-                result.put("name", sortMapDesc(name));
-                result.put("time", time);
-                result.put("zdryType", zdryType);
-                result.put("zdryState", zdryState);
-                result.put("nativePlace", sortMapDesc(nativePlace));
             }
+
+            result.put("site", sortMapDesc(site));
+            result.put("name", sortMapDesc(name));
+            result.put("time", time);
+            result.put("zdryType", zdryType);
+            result.put("zdryState", zdryState);
+            result.put("nativePlace", sortMapDesc(nativePlace));
+
             return new Response("200", result);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -131,127 +138,101 @@ public class PreWarningController {
         }
     }
 
+
     private boolean isAll(String police) {
-        if ("全部".equals(police)) {
+        if ("all".equals(police)) {
             return true;
         }
         return false;
     }
-    private synchronized void dealMapForAll(PersonPath obj,
-                         Map<String, Integer> site,
-                         Map<String, Integer> name,
-                         Map<String, Integer> time,
-                         Map<String, Integer> zdryType,
-                         Map<String, Integer> zdryState,
-                         Map<String, Integer> nativePlace) {
-        dealSiteMap(site, obj);
-        dealNameMap(name, obj);
-        dealTimeMap(time, obj);
 
-        if (obj.getS_ID_NUMBER() != null) {
-            Suspect suspect = suspectDao.findByID(obj.getS_ID_NUMBER());
-            if (suspect != null) {
-                dealZdryType(zdryType, suspect);
-                dealZdryState(zdryState, suspect);
-                dealNativePlace(nativePlace, obj);
-            }
-        }
-    }
-    private synchronized void dealMapForPolice(PersonPath obj, String deptName,
-                                  Map<String, Integer> site,
-                                  Map<String, Integer> name,
-                                  Map<String, Integer> time,
-                                  Map<String, Integer> zdryType,
-                                  Map<String, Integer> zdryState,
-                                  Map<String, Integer> nativePlace) {
+    private void dealNativePlace(Map<String, Integer> nativePlace, List<PersonPath> obj) {
 
-        if (obj.getS_ID_NUMBER() != null) {
-            Suspect suspect = suspectDao.findByIDAndDEPTNAME(obj.getS_ID_NUMBER(), deptName);
-            if (suspect != null) {
-                dealSiteMap(site, obj);
-                dealNameMap(name, obj);
-                dealTimeMap(time, obj);
-                dealZdryType(zdryType, suspect);
-                dealZdryState(zdryState, suspect);
-                dealNativePlace(nativePlace, obj);
-            }
-        }
-
-    }
-
-    private synchronized void dealNativePlace(Map<String, Integer> nativePlace, PersonPath obj) {
-        if (obj != null && obj.getS_ID_NUMBER() != null && obj.getS_ID_NUMBER().length() > 6) {
-            String brithplace = identityDao.findPlaceById(obj.getS_ID_NUMBER().substring(0, 6));
-            if (brithplace != null) {
-                brithplace = brithplace.substring(0, 2);
-                if (nativePlace.get(brithplace) != null) {
-                    int value = nativePlace.get(brithplace);
-                    nativePlace.put(brithplace, ++value);
-                } else {
-                    nativePlace.put(brithplace, 1);
+        for (PersonPath p : obj) {
+            if (p != null && p.getS_ID_NUMBER() != null && p.getS_ID_NUMBER().length() > 6) {
+                String brithplace = identityDao.findPlaceById(p.getS_ID_NUMBER().substring(0, 6));
+                if (brithplace != null) {
+                    brithplace = brithplace.substring(0, 2);
+                    if (nativePlace.get(brithplace) != null) {
+                        int value = nativePlace.get(brithplace);
+                        nativePlace.put(brithplace, ++value);
+                    } else {
+                        nativePlace.put(brithplace, 1);
+                    }
                 }
             }
         }
     }
 
-    private synchronized void dealZdryState(Map<String, Integer> zdryState, Suspect suspect) {
-        if (suspect != null && suspect.getZDRYSTATE() != null) {
-            String type = ConvertUtil.getPreWarnState(suspect.getZDRYSTATE());
-            if (type != null) {
-                if (zdryState.get(type) != null) {
-                    int value = zdryState.get(type);
-                    zdryState.put(type, ++value);
-                } else {
-                    zdryState.put(type, 1);
+    private void dealZdryState(Map<String, Integer> zdryState, List<Suspect> suspects) {
+
+        for (Suspect suspect: suspects) {
+            if (suspect != null && suspect.getZDRYSTATE() != null) {
+                String type = ConvertUtil.getPreWarnState(suspect.getZDRYSTATE());
+                if (type != null) {
+                    if (zdryState.get(type) != null) {
+                        int value = zdryState.get(type);
+                        zdryState.put(type, ++value);
+                    } else {
+                        zdryState.put(type, 1);
+                    }
                 }
             }
         }
     }
-    private synchronized void dealZdryType(Map<String, Integer> zdryType, Suspect suspect) {
-        if (suspect != null && suspect.getZDRYTYPE() != null) {
-            String type = ConvertUtil.getPreWarnType(suspect.getZDRYTYPE());
-            if (type != null) {
-                if (zdryType.get(type) != null) {
-                    int value = zdryType.get(type);
-                    zdryType.put(type, ++value);
-                } else {
-                    zdryType.put(type, 1);
+    private void dealZdryType(Map<String, Integer> zdryType, List<Suspect> suspects) {
+        for (Suspect suspect: suspects) {
+            if (suspect != null && suspect.getZDRYTYPE() != null) {
+                String type = ConvertUtil.getPreWarnType(suspect.getZDRYTYPE());
+                if (type != null) {
+                    if (zdryType.get(type) != null) {
+                        int value = zdryType.get(type);
+                        zdryType.put(type, ++value);
+                    } else {
+                        zdryType.put(type, 1);
+                    }
                 }
             }
         }
     }
 
-    private synchronized void dealSiteMap(Map<String, Integer> site, PersonPath obj) {
-        if (obj.getDWMC() != null) {
-            if (site.get(obj.getDWMC()) != null) {
-                int value = site.get(obj.getDWMC());
-                site.put(obj.getDWMC(), ++value);
-            } else {
-                site.put(obj.getDWMC(), 1);
+    private void dealSiteMap(Map<String, Integer> site, List<PersonPath> obj) {
+        for (PersonPath p : obj) {
+            if (p.getDWMC() != null) {
+                if (site.get(p.getDWMC()) != null) {
+                    int value = site.get(p.getDWMC());
+                    site.put(p.getDWMC(), ++value);
+                } else {
+                    site.put(p.getDWMC(), 1);
+                }
             }
         }
     }
 
-    private synchronized void dealNameMap(Map<String, Integer> name, PersonPath obj) {
-        if (obj.getNAME() != null) {
-            if (name.get(obj.getNAME()) != null) {
-                int value = name.get(obj.getNAME());
-                name.put(obj.getNAME(), ++value);
-            } else {
-                name.put(obj.getNAME(), 1);
+    private void dealNameMap(Map<String, Integer> name, List<PersonPath> obj) {
+        for (PersonPath p : obj) {
+            if (p.getNAME() != null) {
+                if (name.get(p.getNAME()) != null) {
+                    int value = name.get(p.getNAME());
+                    name.put(p.getNAME(), ++value);
+                } else {
+                    name.put(p.getNAME(), 1);
+                }
             }
         }
     }
 
-    private synchronized void dealTimeMap(Map<String, Integer> time, PersonPath obj) {
-        if (obj.getCREATE_DATE() != null) {
-            String key = obj.getCREATE_DATE().toString().split(" ")[1];
-            key = key.split(":")[0];
-            if (time.get(key) != null ) {
-                int value = time.get(key);
-                time.put(key, ++value);
-            } else {
-                time.put(key, 1);
+    private void dealTimeMap(Map<String, Integer> time, List<PersonPath> obj) {
+        for (PersonPath p : obj) {
+            if (p.getCREATE_DATE() != null) {
+                String key = p.getCREATE_DATE().toString().split(" ")[1];
+                key = key.split(":")[0];
+                if (time.get(key) != null) {
+                    int value = time.get(key);
+                    time.put(key, ++value);
+                } else {
+                    time.put(key, 1);
+                }
             }
         }
     }
